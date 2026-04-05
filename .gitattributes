@@ -1,0 +1,13 @@
+# Ignore build & generated files
+/build/** linguist-vendored
+.gradle/** linguist-vendored
+**/generated/** linguist-vendored
+**/build/** linguist-vendored
+
+# Ignore configs inflating Java %
+*.gradle linguist-vendored
+*.properties linguist-vendored
+
+# Prefer Kotlin
+*.kt linguist-detectable=true
+*.java linguist-detectable=false
