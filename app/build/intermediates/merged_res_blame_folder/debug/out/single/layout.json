@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.gitcommitbuddy.app-mergeDebugResources-49:/layout/activity_main.xml",
+        "source": "com.gitcommitbuddy.app-main-52:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.gitcommitbuddy.app-mergeDebugResources-49:/layout/layout_floating_bubble.xml",
+        "source": "com.gitcommitbuddy.app-main-52:/layout/layout_floating_bubble.xml"
+    },
+    {
+        "merged": "com.gitcommitbuddy.app-mergeDebugResources-49:/layout/activity_settings.xml",
+        "source": "com.gitcommitbuddy.app-main-52:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.gitcommitbuddy.app-mergeDebugResources-49:/layout/layout_floating_panel.xml",
+        "source": "com.gitcommitbuddy.app-main-52:/layout/layout_floating_panel.xml"
+    }
+]

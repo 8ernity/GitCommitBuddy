@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand / GitHub colours -->
+    <color name="github_green">#1F8348</color>
+    <color name="github_green_dark">#196F3D</color>
+    <color name="github_green_light">#27AE60</color>
+
+    <!-- Material 3 seed colours -->
+    <color name="md_theme_light_primary">#1F8348</color>
+    <color name="md_theme_light_onPrimary">#FFFFFF</color>
+    <color name="md_theme_light_primaryContainer">#A8F5C2</color>
+    <color name="md_theme_light_onPrimaryContainer">#002112</color>
+    <color name="md_theme_light_secondary">#506353</color>
+    <color name="md_theme_light_onSecondary">#FFFFFF</color>
+    <color name="md_theme_light_background">#F8FBF7</color>
+    <color name="md_theme_light_surface">#FFFFFF</color>
+    <color name="md_theme_light_onSurface">#1A1C1A</color>
+    <color name="md_theme_light_error">#BA1A1A</color>
+
+    <color name="md_theme_dark_primary">#8CD8A4</color>
+    <color name="md_theme_dark_onPrimary">#003920</color>
+    <color name="md_theme_dark_background">#1A1C1A</color>
+    <color name="md_theme_dark_surface">#1A1C1A</color>
+    <color name="md_theme_dark_onSurface">#E2E3DE</color>
+
+    <!-- Semantic colours -->
+    <color name="success_green">#1F8348</color>
+    <color name="error_red">#BA1A1A</color>
+    <color name="warning_orange">#E65100</color>
+
+    <!-- Utility -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+</resources>

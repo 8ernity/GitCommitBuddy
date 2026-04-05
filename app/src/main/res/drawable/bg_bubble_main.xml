@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bg_bubble_main.xml — the main filled circle for the floating bubble -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/github_green" />
+    <stroke android:width="2dp" android:color="#33FFFFFF" />
+</shape>

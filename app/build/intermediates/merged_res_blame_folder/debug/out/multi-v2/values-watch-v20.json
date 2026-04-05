@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.gitcommitbuddy.app-mergeDebugResources-48:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\arpan\\.gradle\\caches\\transforms-3\\f08e5ed1750ee93ac338d6f10c9b7fa4\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

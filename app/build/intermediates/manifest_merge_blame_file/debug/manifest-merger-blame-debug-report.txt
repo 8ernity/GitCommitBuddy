@@ -1,0 +1,443 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.gitcommitbuddy"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <!--
+12         ════════════════════════════════════════════════════════════
+13         PERMISSIONS
+14         ════════════════════════════════════════════════════════════
+15    -->
+16
+17
+18    <!-- Draw the floating bubble over all other apps -->
+19    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+19-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:10:5-78
+19-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:10:22-75
+20
+21    <!-- GitHub API calls -->
+22    <uses-permission android:name="android.permission.INTERNET" />
+22-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:13:5-67
+22-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:13:22-64
+23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+23-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:14:5-79
+23-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:14:22-76
+24
+25    <!-- Push notifications (runtime request on Android 13+) -->
+26    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+26-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:17:5-77
+26-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:17:22-74
+27
+28    <!-- Vibration feedback -->
+29    <uses-permission android:name="android.permission.VIBRATE" />
+29-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:20:5-66
+29-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:20:22-63
+30
+31    <!-- Keep WorkManager alive across reboots -->
+32    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+32-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:23:5-81
+32-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:23:22-78
+33
+34    <!-- Required to call startForeground() -->
+35    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+35-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:26:5-77
+35-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:26:22-74
+36
+37    <!--
+38         Required on Android 14+ (API 34) for foregroundServiceType="specialUse".
+39         Without this the OS rejects startForeground() at runtime.
+40    -->
+41    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+41-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:32:5-89
+41-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:32:22-86
+42
+43    <!-- Battery optimisation exclusion dialog -->
+44    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+44-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:35:5-95
+44-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:35:22-92
+45
+46    <!-- WorkManager wake lock -->
+47    <uses-permission android:name="android.permission.WAKE_LOCK" />
+47-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:38:5-68
+47-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:38:22-65
+48
+49    <permission
+49-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+50        android:name="com.gitcommitbuddy.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+50-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+51        android:protectionLevel="signature" />
+51-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+52
+53    <uses-permission android:name="com.gitcommitbuddy.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+53-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+53-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+54
+55    <application
+55-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:40:5-113:19
+56        android:name="com.gitcommitbuddy.GitCommitBuddyApp"
+56-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:41:9-42
+57        android:allowBackup="true"
+57-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:42:9-35
+58        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+58-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+59        android:dataExtractionRules="@xml/data_extraction_rules"
+59-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:43:9-65
+60        android:debuggable="true"
+61        android:extractNativeLibs="false"
+62        android:fullBackupContent="@xml/backup_rules"
+62-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:44:9-54
+63        android:icon="@mipmap/ic_launcher"
+63-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:45:9-43
+64        android:label="@string/app_name"
+64-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:46:9-41
+65        android:roundIcon="@mipmap/ic_launcher_round"
+65-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:47:9-54
+66        android:supportsRtl="true"
+66-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:48:9-35
+67        android:testOnly="true"
+68        android:theme="@style/Theme.GitCommitBuddy" >
+68-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:49:9-52
+69
+70        <!-- ── Main launcher activity ──────────────────────────────────────── -->
+71        <activity
+71-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:53:9-62:20
+72            android:name="com.gitcommitbuddy.ui.main.MainActivity"
+72-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:54:13-49
+73            android:exported="true"
+73-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:55:13-36
+74            android:launchMode="singleTop"
+74-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:56:13-43
+75            android:windowSoftInputMode="adjustResize" >
+75-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:57:13-55
+76            <intent-filter>
+76-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:58:13-61:29
+77                <action android:name="android.intent.action.MAIN" />
+77-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:59:17-69
+77-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:59:25-66
+78
+79                <category android:name="android.intent.category.LAUNCHER" />
+79-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:60:17-77
+79-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:60:27-74
+80            </intent-filter>
+81        </activity>
+82
+83        <!-- ── Settings screen ────────────────────────────────────────────── -->
+84        <activity
+84-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:65:9-68:66
+85            android:name="com.gitcommitbuddy.ui.settings.SettingsActivity"
+85-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:66:13-57
+86            android:exported="false"
+86-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:67:13-37
+87            android:parentActivityName="com.gitcommitbuddy.ui.main.MainActivity" />
+87-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:68:13-63
+88
+89        <!-- ── Floating overlay service ───────────────────────────────────── -->
+90        <!--
+91            foregroundServiceType="specialUse" is required from Android 14 (API 34)
+92            when the foreground service is used to display a TYPE_APPLICATION_OVERLAY
+93            window. The <property> tag provides the mandatory textual description of why
+94            we need specialUse (reviewed by Google Play policy).
+95        -->
+96        <service
+96-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:77:9-85:19
+97            android:name="com.gitcommitbuddy.service.FloatingWidgetService"
+97-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:78:13-58
+98            android:exported="false"
+98-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:79:13-37
+99            android:foregroundServiceType="specialUse"
+99-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:80:13-55
+100            android:stopWithTask="false" >
+100-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:81:13-41
+101            <property
+101-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:82:13-84:138
+102                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+102-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:83:17-76
+103                android:value="Displays a draggable floating bubble that shows the user&apos;s daily GitHub commit status over other apps." />
+103-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:84:17-135
+104        </service>
+105
+106        <!-- ── WorkManager: disable default auto-init so Hilt can own it ──── -->
+107        <provider
+108            android:name="androidx.startup.InitializationProvider"
+108-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:89:13-67
+109            android:authorities="com.gitcommitbuddy.androidx-startup"
+109-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:90:13-68
+110            android:exported="false" >
+110-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:91:13-37
+111            <meta-data
+111-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arpan\.gradle\caches\transforms-3\b86e7fdf2d69161a6dcc0d8c44644b51\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+112                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+112-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arpan\.gradle\caches\transforms-3\b86e7fdf2d69161a6dcc0d8c44644b51\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+113                android:value="androidx.startup" />
+113-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arpan\.gradle\caches\transforms-3\b86e7fdf2d69161a6dcc0d8c44644b51\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+114            <meta-data
+114-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\arpan\.gradle\caches\transforms-3\3b88b385e7bed757b85afc99fc994cdc\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+115                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+115-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\arpan\.gradle\caches\transforms-3\3b88b385e7bed757b85afc99fc994cdc\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+116                android:value="androidx.startup" />
+116-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\arpan\.gradle\caches\transforms-3\3b88b385e7bed757b85afc99fc994cdc\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+117            <meta-data
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+118                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+119                android:value="androidx.startup" />
+119-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+120        </provider>
+121
+122        <!-- ── Boot receiver: reschedules WorkManager after device reboot ─── -->
+123        <receiver
+123-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:100:9-106:20
+124            android:name="com.gitcommitbuddy.service.BootReceiver"
+124-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:101:13-49
+125            android:exported="true" >
+125-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:102:13-36
+126            <intent-filter>
+126-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:103:13-105:29
+127                <action android:name="android.intent.action.BOOT_COMPLETED" />
+127-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:17-79
+127-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:25-76
+128            </intent-filter>
+129        </receiver>
+130
+131        <!-- ── Notification action receiver (Open GitHub / Dismiss) ─────── -->
+132        <receiver
+132-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:109:9-111:40
+133            android:name="com.gitcommitbuddy.service.NotificationActionReceiver"
+133-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:110:13-63
+134            android:exported="false" />
+134-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:111:13-37
+135
+136        <service
+136-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:39:9-45:35
+137            android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"
+137-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:40:13-88
+138            android:directBootAware="false"
+138-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:41:13-44
+139            android:enabled="@bool/enable_system_alarm_service_default"
+139-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:42:13-72
+140            android:exported="false" />
+140-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:43:13-37
+141        <service
+141-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:46:9-52:35
+142            android:name="androidx.work.impl.background.systemjob.SystemJobService"
+142-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:47:13-84
+143            android:directBootAware="false"
+143-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:48:13-44
+144            android:enabled="@bool/enable_system_job_service_default"
+144-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:49:13-70
+145            android:exported="true"
+145-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:50:13-36
+146            android:permission="android.permission.BIND_JOB_SERVICE" />
+146-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:51:13-69
+147        <service
+147-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:53:9-59:35
+148            android:name="androidx.work.impl.foreground.SystemForegroundService"
+148-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:54:13-81
+149            android:directBootAware="false"
+149-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:55:13-44
+150            android:enabled="@bool/enable_system_foreground_service_default"
+150-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:56:13-77
+151            android:exported="false" />
+151-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:57:13-37
+152
+153        <receiver
+153-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:61:9-66:35
+154            android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"
+154-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:62:13-88
+155            android:directBootAware="false"
+155-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:63:13-44
+156            android:enabled="true"
+156-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:64:13-35
+157            android:exported="false" />
+157-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:65:13-37
+158        <receiver
+158-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:67:9-77:20
+159            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy"
+159-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:68:13-106
+160            android:directBootAware="false"
+160-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:69:13-44
+161            android:enabled="false"
+161-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:70:13-36
+162            android:exported="false" >
+162-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:71:13-37
+163            <intent-filter>
+163-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:73:13-76:29
+164                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+164-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:17-87
+164-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:74:25-84
+165                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+165-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:17-90
+165-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:75:25-87
+166            </intent-filter>
+167        </receiver>
+168        <receiver
+168-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:78:9-88:20
+169            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy"
+169-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:79:13-104
+170            android:directBootAware="false"
+170-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:80:13-44
+171            android:enabled="false"
+171-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:81:13-36
+172            android:exported="false" >
+172-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:82:13-37
+173            <intent-filter>
+173-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:84:13-87:29
+174                <action android:name="android.intent.action.BATTERY_OKAY" />
+174-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:17-77
+174-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:85:25-74
+175                <action android:name="android.intent.action.BATTERY_LOW" />
+175-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:17-76
+175-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:86:25-73
+176            </intent-filter>
+177        </receiver>
+178        <receiver
+178-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:89:9-99:20
+179            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy"
+179-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:90:13-104
+180            android:directBootAware="false"
+180-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:91:13-44
+181            android:enabled="false"
+181-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:92:13-36
+182            android:exported="false" >
+182-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:93:13-37
+183            <intent-filter>
+183-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:95:13-98:29
+184                <action android:name="android.intent.action.DEVICE_STORAGE_LOW" />
+184-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:17-83
+184-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:96:25-80
+185                <action android:name="android.intent.action.DEVICE_STORAGE_OK" />
+185-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:17-82
+185-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:97:25-79
+186            </intent-filter>
+187        </receiver>
+188        <receiver
+188-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:100:9-109:20
+189            android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy"
+189-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:101:13-103
+190            android:directBootAware="false"
+190-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:102:13-44
+191            android:enabled="false"
+191-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:103:13-36
+192            android:exported="false" >
+192-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:104:13-37
+193            <intent-filter>
+193-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:106:13-108:29
+194                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+194-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:17-79
+194-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:107:25-76
+195            </intent-filter>
+196        </receiver>
+197        <receiver
+197-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:110:9-121:20
+198            android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver"
+198-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:111:13-88
+199            android:directBootAware="false"
+199-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:112:13-44
+200            android:enabled="false"
+200-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:113:13-36
+201            android:exported="false" >
+201-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:114:13-37
+202            <intent-filter>
+202-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:116:13-120:29
+203                <action android:name="android.intent.action.BOOT_COMPLETED" />
+203-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:17-79
+203-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:25-76
+204                <action android:name="android.intent.action.TIME_SET" />
+204-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:17-73
+204-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:25-70
+205                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+205-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:17-81
+205-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:119:25-78
+206            </intent-filter>
+207        </receiver>
+208        <receiver
+208-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:122:9-131:20
+209            android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver"
+209-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:123:13-99
+210            android:directBootAware="false"
+210-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:124:13-44
+211            android:enabled="@bool/enable_system_alarm_service_default"
+211-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:125:13-72
+212            android:exported="false" >
+212-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:126:13-37
+213            <intent-filter>
+213-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:128:13-130:29
+214                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies" />
+214-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:17-98
+214-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:129:25-95
+215            </intent-filter>
+216        </receiver>
+217        <receiver
+217-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:132:9-142:20
+218            android:name="androidx.work.impl.diagnostics.DiagnosticsReceiver"
+218-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:133:13-78
+219            android:directBootAware="false"
+219-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:134:13-44
+220            android:enabled="true"
+220-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:135:13-35
+221            android:exported="true"
+221-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:136:13-36
+222            android:permission="android.permission.DUMP" >
+222-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:137:13-57
+223            <intent-filter>
+223-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:139:13-141:29
+224                <action android:name="androidx.work.diagnostics.REQUEST_DIAGNOSTICS" />
+224-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:17-88
+224-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:140:25-85
+225            </intent-filter>
+226        </receiver>
+227
+228        <service
+228-->[androidx.room:room-runtime:2.6.1] C:\Users\arpan\.gradle\caches\transforms-3\c17c968411b85b37f7c5853396a5198f\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+229            android:name="androidx.room.MultiInstanceInvalidationService"
+229-->[androidx.room:room-runtime:2.6.1] C:\Users\arpan\.gradle\caches\transforms-3\c17c968411b85b37f7c5853396a5198f\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+230            android:directBootAware="true"
+230-->[androidx.room:room-runtime:2.6.1] C:\Users\arpan\.gradle\caches\transforms-3\c17c968411b85b37f7c5853396a5198f\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+231            android:exported="false" />
+231-->[androidx.room:room-runtime:2.6.1] C:\Users\arpan\.gradle\caches\transforms-3\c17c968411b85b37f7c5853396a5198f\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+232
+233        <receiver
+233-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+234            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+234-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+235            android:directBootAware="false"
+235-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+236            android:enabled="true"
+236-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+237            android:exported="true"
+237-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+238            android:permission="android.permission.DUMP" >
+238-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+239            <intent-filter>
+239-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+240                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+240-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+240-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+241            </intent-filter>
+242            <intent-filter>
+242-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+243                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+243-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+243-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+244            </intent-filter>
+245            <intent-filter>
+245-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+246                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+246-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+246-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+247            </intent-filter>
+248            <intent-filter>
+248-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+249                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+249-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+249-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\arpan\.gradle\caches\transforms-3\be5b4bb6c40bbf60902e6bf8c537e4b1\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+250            </intent-filter>
+251        </receiver>
+252    </application>
+253
+254</manifest>

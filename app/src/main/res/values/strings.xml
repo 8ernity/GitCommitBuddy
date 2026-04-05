@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitCommit Buddy</string>
+    <string name="app_description">Your daily GitHub commit companion</string>
+
+    <!-- Status messages -->
+    <string name="status_committed">✅ Committed Today!</string>
+    <string name="status_not_committed">❌ No commit yet today</string>
+    <string name="status_loading">Checking GitHub…</string>
+    <string name="status_not_configured">Configure your GitHub account in Settings</string>
+
+    <!-- Notifications -->
+    <string name="notif_reminder_title">Did you commit today? 🔥</string>
+    <string name="notif_reminder_body">Keep your streak alive — push some code!</string>
+    <string name="notif_alert_title">⚠️ No commit detected yet!</string>
+    <string name="notif_alert_body">Don\'t break the streak! Open GitHub and commit something.</string>
+    <string name="notif_widget_title">GitCommit Buddy</string>
+    <string name="notif_widget_body">Floating widget active</string>
+
+    <!-- Buttons -->
+    <string name="btn_open_github">Open GitHub</string>
+    <string name="btn_settings">Settings</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_dismiss">Dismiss</string>
+
+    <!-- Settings -->
+    <string name="settings_github_section">GitHub Account</string>
+    <string name="settings_reminder_section">Daily Reminder</string>
+    <string name="settings_features_section">Features</string>
+    <string name="settings_username_hint">GitHub Username</string>
+    <string name="settings_token_hint">Personal Access Token (PAT)</string>
+    <string name="settings_reminder_time">Reminder Time</string>
+    <string name="settings_widget_enabled">Floating Widget</string>
+    <string name="settings_notifications">Daily Notifications</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+
+    <!-- Errors -->
+    <string name="error_no_network">No network connection. Showing cached data.</string>
+    <string name="error_invalid_token">Invalid GitHub token. Please update in Settings.</string>
+    <string name="error_user_not_found">GitHub user not found. Check your username in Settings.</string>
+    <string name="error_rate_limit">GitHub API rate limit exceeded. Try again in an hour.</string>
+
+    <!-- Permissions -->
+    <string name="permission_overlay_title">Overlay Permission Required</string>
+    <string name="permission_overlay_message">GitCommit Buddy needs permission to display the floating bubble over other apps.</string>
+    <string name="permission_battery_title">Improve Reliability</string>
+    <string name="permission_battery_message">Exclude GitCommit Buddy from battery optimization to ensure daily reminders fire reliably.</string>
+</resources>
