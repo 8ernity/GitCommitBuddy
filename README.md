@@ -4,6 +4,22 @@ A production-ready Android app that displays a **draggable floating bubble** (ch
 
 ---
 
+![Android](https://img.shields.io/badge/Platform-Android-green)
+![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue)
+![Architecture](https://img.shields.io/badge/Architecture-MVVM-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+## 💡 Why GitCommitBuddy?
+
+Maintaining a daily GitHub streak is hard.
+
+This app solves that by:
+- Keeping a floating reminder always visible
+- Tracking real commit activity via GitHub API
+- Encouraging consistency through smart nudges
+
+Perfect for developers preparing for placements or building habits.
+
 ## 📱 Feature Overview
 
 | Feature | Implementation |
