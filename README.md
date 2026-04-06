@@ -6,7 +6,7 @@ A production-ready Android app that displays a **draggable floating bubble** (ch
 
 | Main Interface | Floating Bubble | Settings |
 |----------------|----------------|----------|
-| ![](screenshots/Interface.gif) | ![](screenshots/FloatBubble.gif) |
+| ![](screenshots/Interface.gif) | ![](screenshots/FloatBubble.gif) | ![](screenshots/SettingPrev.gif) |
 
 ![Android](https://img.shields.io/badge/Platform-Android-green)
 ![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue)
