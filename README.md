@@ -13,6 +13,10 @@ A production-ready Android app that displays a **draggable floating bubble** (ch
 ![Architecture](https://img.shields.io/badge/Architecture-MVVM-orange)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
+## 📥 Download APK
+
+[Download Latest Release](https://github.com/8ernity/GitCommitBuddy/releases)
+
 ## 💡 Why GitCommitBuddy?
 
 Maintaining a daily GitHub streak is hard.
