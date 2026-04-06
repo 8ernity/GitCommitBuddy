@@ -2,7 +2,11 @@
 
 A production-ready Android app that displays a **draggable floating bubble** (chat-head style) reminding you to commit to GitHub every day.
 
----
+## 🎬 Demo
+
+| Main Interface | Floating Bubble | Settings |
+|----------------|----------------|----------|
+| ![](screenshots/Interface.gif) |
 
 ![Android](https://img.shields.io/badge/Platform-Android-green)
 ![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue)
