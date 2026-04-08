@@ -3234,6 +3234,7 @@ id btnRefresh
 id btnRemindLater
 id btnSaveCredentials
 id btnToggleToken
+id bubbleBackground
 id buttonPanel
 id cache_measures
 id callMeasure

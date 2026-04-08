@@ -144,8 +144,11 @@ class MainActivity : AppCompatActivity() {
                         binding.layoutError.isVisible         = false
 
                         val status = state.status
+                        val goal = 7
+                        val count = status.todayCommitCount
+
                         binding.tvCommitStatus.text = if (status.committedToday)
-                            "✅ Committed Today!" else "❌ No commit yet today"
+                            "✅ Goal Reached! ($count/$goal)" else "❌ $count/$goal commits today"
 
                         binding.tvMotivation.text = if (status.committedToday)
                             MotivationalMessages.getCommittedMessage()

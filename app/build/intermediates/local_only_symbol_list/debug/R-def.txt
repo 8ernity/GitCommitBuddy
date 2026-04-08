@@ -57,6 +57,7 @@ id btnRefresh
 id btnRemindLater
 id btnSaveCredentials
 id btnToggleToken
+id bubbleBackground
 id cardCommitStatus
 id cardReminderTime
 id colorBlue

@@ -41,7 +41,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `commit_cache` (`id`,`committedToday`,`lastCommitTime`,`lastCommitRepo`,`lastCommitMessage`,`currentStreak`,`cachedAt`) VALUES (?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `commit_cache` (`id`,`committedToday`,`todayCommitCount`,`lastCommitTime`,`lastCommitRepo`,`lastCommitMessage`,`currentStreak`,`cachedAt`) VALUES (?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -50,23 +50,24 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
         statement.bindLong(1, entity.getId());
         final int _tmp = entity.getCommittedToday() ? 1 : 0;
         statement.bindLong(2, _tmp);
+        statement.bindLong(3, entity.getTodayCommitCount());
         if (entity.getLastCommitTime() == null) {
-          statement.bindNull(3);
-        } else {
-          statement.bindString(3, entity.getLastCommitTime());
-        }
-        if (entity.getLastCommitRepo() == null) {
           statement.bindNull(4);
         } else {
-          statement.bindString(4, entity.getLastCommitRepo());
+          statement.bindString(4, entity.getLastCommitTime());
         }
-        if (entity.getLastCommitMessage() == null) {
+        if (entity.getLastCommitRepo() == null) {
           statement.bindNull(5);
         } else {
-          statement.bindString(5, entity.getLastCommitMessage());
+          statement.bindString(5, entity.getLastCommitRepo());
         }
-        statement.bindLong(6, entity.getCurrentStreak());
-        statement.bindLong(7, entity.getCachedAt());
+        if (entity.getLastCommitMessage() == null) {
+          statement.bindNull(6);
+        } else {
+          statement.bindString(6, entity.getLastCommitMessage());
+        }
+        statement.bindLong(7, entity.getCurrentStreak());
+        statement.bindLong(8, entity.getCachedAt());
       }
     };
     this.__preparedStmtOfClearAll = new SharedSQLiteStatement(__db) {
@@ -80,8 +81,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
   }
 
   @Override
-  public Object upsert(final CommitCacheEntity entity,
-      final Continuation<? super Unit> $completion) {
+  public Object upsert(final CommitCacheEntity entity, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -95,11 +95,11 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object clearAll(final Continuation<? super Unit> $completion) {
+  public Object clearAll(final Continuation<? super Unit> arg0) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -118,7 +118,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
           __preparedStmtOfClearAll.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override
@@ -133,6 +133,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
           final int _cursorIndexOfCommittedToday = CursorUtil.getColumnIndexOrThrow(_cursor, "committedToday");
+          final int _cursorIndexOfTodayCommitCount = CursorUtil.getColumnIndexOrThrow(_cursor, "todayCommitCount");
           final int _cursorIndexOfLastCommitTime = CursorUtil.getColumnIndexOrThrow(_cursor, "lastCommitTime");
           final int _cursorIndexOfLastCommitRepo = CursorUtil.getColumnIndexOrThrow(_cursor, "lastCommitRepo");
           final int _cursorIndexOfLastCommitMessage = CursorUtil.getColumnIndexOrThrow(_cursor, "lastCommitMessage");
@@ -146,6 +147,8 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
             final int _tmp;
             _tmp = _cursor.getInt(_cursorIndexOfCommittedToday);
             _tmpCommittedToday = _tmp != 0;
+            final int _tmpTodayCommitCount;
+            _tmpTodayCommitCount = _cursor.getInt(_cursorIndexOfTodayCommitCount);
             final String _tmpLastCommitTime;
             if (_cursor.isNull(_cursorIndexOfLastCommitTime)) {
               _tmpLastCommitTime = null;
@@ -168,7 +171,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
             _tmpCurrentStreak = _cursor.getInt(_cursorIndexOfCurrentStreak);
             final long _tmpCachedAt;
             _tmpCachedAt = _cursor.getLong(_cursorIndexOfCachedAt);
-            _result = new CommitCacheEntity(_tmpId,_tmpCommittedToday,_tmpLastCommitTime,_tmpLastCommitRepo,_tmpLastCommitMessage,_tmpCurrentStreak,_tmpCachedAt);
+            _result = new CommitCacheEntity(_tmpId,_tmpCommittedToday,_tmpTodayCommitCount,_tmpLastCommitTime,_tmpLastCommitRepo,_tmpLastCommitMessage,_tmpCurrentStreak,_tmpCachedAt);
           } else {
             _result = null;
           }
@@ -186,7 +189,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
   }
 
   @Override
-  public Object getCache(final Continuation<? super CommitCacheEntity> $completion) {
+  public Object getCache(final Continuation<? super CommitCacheEntity> arg0) {
     final String _sql = "SELECT * FROM commit_cache WHERE id = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -198,6 +201,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
         try {
           final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
           final int _cursorIndexOfCommittedToday = CursorUtil.getColumnIndexOrThrow(_cursor, "committedToday");
+          final int _cursorIndexOfTodayCommitCount = CursorUtil.getColumnIndexOrThrow(_cursor, "todayCommitCount");
           final int _cursorIndexOfLastCommitTime = CursorUtil.getColumnIndexOrThrow(_cursor, "lastCommitTime");
           final int _cursorIndexOfLastCommitRepo = CursorUtil.getColumnIndexOrThrow(_cursor, "lastCommitRepo");
           final int _cursorIndexOfLastCommitMessage = CursorUtil.getColumnIndexOrThrow(_cursor, "lastCommitMessage");
@@ -211,6 +215,8 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
             final int _tmp;
             _tmp = _cursor.getInt(_cursorIndexOfCommittedToday);
             _tmpCommittedToday = _tmp != 0;
+            final int _tmpTodayCommitCount;
+            _tmpTodayCommitCount = _cursor.getInt(_cursorIndexOfTodayCommitCount);
             final String _tmpLastCommitTime;
             if (_cursor.isNull(_cursorIndexOfLastCommitTime)) {
               _tmpLastCommitTime = null;
@@ -233,7 +239,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
             _tmpCurrentStreak = _cursor.getInt(_cursorIndexOfCurrentStreak);
             final long _tmpCachedAt;
             _tmpCachedAt = _cursor.getLong(_cursorIndexOfCachedAt);
-            _result = new CommitCacheEntity(_tmpId,_tmpCommittedToday,_tmpLastCommitTime,_tmpLastCommitRepo,_tmpLastCommitMessage,_tmpCurrentStreak,_tmpCachedAt);
+            _result = new CommitCacheEntity(_tmpId,_tmpCommittedToday,_tmpTodayCommitCount,_tmpLastCommitTime,_tmpLastCommitRepo,_tmpLastCommitMessage,_tmpCurrentStreak,_tmpCachedAt);
           } else {
             _result = null;
           }
@@ -243,7 +249,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @NonNull

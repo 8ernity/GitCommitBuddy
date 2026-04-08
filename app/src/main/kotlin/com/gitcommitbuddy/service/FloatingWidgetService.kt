@@ -3,6 +3,7 @@ package com.gitcommitbuddy.service
 import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PixelFormat
 import android.net.Uri
 import android.os.Build
@@ -55,6 +56,7 @@ class FloatingWidgetService : Service() {
     private var bubbleParams: WindowManager.LayoutParams? = null
     private var panelParams: WindowManager.LayoutParams? = null
     private var isPanelVisible = false
+    private var lastBubbleColorHex: String = PreferencesManager.Defaults.BUBBLE_COLOR
 
     companion object {
         const val ACTION_REFRESH      = "com.gitcommitbuddy.action.REFRESH"
@@ -77,7 +79,50 @@ class FloatingWidgetService : Service() {
         windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
         addBubble()
         addPanel()
+        observeSettings()
         refreshCommitStatus()
+    }
+
+    private fun observeSettings() {
+        serviceScope.launch {
+            prefs.bubbleColor.collect { hex ->
+                lastBubbleColorHex = hex
+                applyBubbleColor(hex)
+            }
+        }
+        serviceScope.launch {
+            prefs.darkMode.collect { isDark ->
+                updateTheme(isDark)
+            }
+        }
+    }
+
+    private fun updateTheme(isDark: Boolean) {
+        // We use the DayNight theme which should handle dark/light if the system is set correctly,
+        // but for the service context we manually apply the mode if possible.
+        
+        if (bubbleView != null || panelView != null) {
+            val wasPanelVisible = isPanelVisible
+            removeBubble()
+            removePanel()
+            addBubble()
+            addPanel()
+            if (wasPanelVisible) showPanel()
+            refreshCommitStatus()
+        }
+    }
+
+    private fun applyBubbleColor(hex: String) {
+        if (!::bubbleBinding.isInitialized) return
+        try {
+            val color = Color.parseColor(hex)
+            val drawable = bubbleBinding.bubbleBackground.background?.mutate()
+            if (drawable is android.graphics.drawable.GradientDrawable) {
+                drawable.setColor(color)
+            } else {
+                drawable?.setTint(color)
+            }
+        } catch (_: Exception) { }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -103,6 +148,7 @@ class FloatingWidgetService : Service() {
     private fun addBubble() {
         val contextThemeWrapper = ContextThemeWrapper(this, R.style.Theme_GitCommitBuddy)
         bubbleBinding = LayoutFloatingBubbleBinding.inflate(LayoutInflater.from(contextThemeWrapper))
+        applyBubbleColor(lastBubbleColorHex)
         bubbleView    = bubbleBinding.root
 
         val layoutType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -352,8 +398,12 @@ class FloatingWidgetService : Service() {
     }
 
     private fun updatePanel(cache: CommitCacheEntity) {
+        val goal = 7
+        val count = cache.todayCommitCount
+        
         panelBinding.tvCommitStatus.text =
-            if (cache.committedToday) "✅ Committed Today!" else "❌ No commit yet"
+            if (cache.committedToday) "✅ Goal Reached! ($count/$goal)" 
+            else "❌ $count/$goal commits today"
 
         panelBinding.tvLastCommitTime.text = cache.lastCommitTime
             ?.let { "Last: ${TimeFormatter.formatRelative(it)}" }

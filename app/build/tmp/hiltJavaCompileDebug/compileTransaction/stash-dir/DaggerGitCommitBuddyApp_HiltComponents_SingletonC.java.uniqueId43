@@ -695,6 +695,7 @@ public final class DaggerGitCommitBuddyApp_HiltComponents_SingletonC {
     @CanIgnoreReturnValue
     private GitCommitBuddyApp injectGitCommitBuddyApp2(GitCommitBuddyApp instance) {
       GitCommitBuddyApp_MembersInjector.injectWorkerFactory(instance, hiltWorkerFactory());
+      GitCommitBuddyApp_MembersInjector.injectPrefs(instance, preferencesManagerProvider.get());
       return instance;
     }
 

@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 data class CommitCacheEntity(
     @PrimaryKey val id: Int = 1,               // Singleton row
     val committedToday: Boolean,
+    val todayCommitCount: Int = 0,
     val lastCommitTime: String?,
     val lastCommitRepo: String?,
     val lastCommitMessage: String?,
@@ -75,7 +76,7 @@ interface DailyCommitDao {
 
 @Database(
     entities = [CommitCacheEntity::class, DailyCommitEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -43,10 +43,23 @@ class GitHubRepository @Inject constructor(
             val pushEvents = events.filter { it.type == "PushEvent" }
             val todayUtc   = todayUtcString()
             val todayPushes = pushEvents.filter { it.createdAt.startsWith(todayUtc) }
+            
+            // Log for debugging
+            println("GCB_DEBUG: Today's push events: ${todayPushes.size}")
+            todayPushes.forEach { event ->
+                println("GCB_DEBUG: Event ${event.id} has ${event.payload?.commits?.size} commits (size field: ${event.payload?.size})")
+            }
+
+            val todayCommitCount = todayPushes.sumOf { event ->
+                val payload = event.payload
+                // Try commits list size first, then fallback to size field, then 1 if it's a PushEvent
+                payload?.commits?.size ?: payload?.size ?: 1
+            }
             val mostRecent  = pushEvents.firstOrNull()
 
             val status = CommitStatus(
-                committedToday    = todayPushes.isNotEmpty(),
+                committedToday    = todayCommitCount >= 7,
+                todayCommitCount  = todayCommitCount,
                 lastCommitTime    = mostRecent?.createdAt,
                 lastCommitRepo    = mostRecent?.repo?.name,
                 lastCommitMessage = mostRecent?.payload?.commits?.firstOrNull()?.message,
@@ -56,6 +69,7 @@ class GitHubRepository @Inject constructor(
             cacheDao.upsert(
                 CommitCacheEntity(
                     committedToday    = status.committedToday,
+                    todayCommitCount  = status.todayCommitCount,
                     lastCommitTime    = status.lastCommitTime,
                     lastCommitRepo    = status.lastCommitRepo,
                     lastCommitMessage = status.lastCommitMessage,

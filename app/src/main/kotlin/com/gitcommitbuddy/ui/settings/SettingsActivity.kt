@@ -43,6 +43,8 @@ class SettingsActivity : AppCompatActivity() {
 
     // Prevent the switch listener from firing on programmatic isChecked changes
     private var suppressWidgetSwitch = false
+    private var programmaticDarkMode = false
+    private var programmaticNotif    = false
 
     // ── Overlay permission launcher (used when widget switch is toggled ON) ───
     private val overlayPermissionLauncher = registerForActivityResult(
@@ -122,6 +124,7 @@ class SettingsActivity : AppCompatActivity() {
 
         // ── Notifications toggle ──────────────────────────────────────────────
         binding.switchNotifications.setOnCheckedChangeListener { _, checked ->
+            if (programmaticNotif) return@setOnCheckedChangeListener
             viewModel.setNotificationsEnabled(checked)
             if (checked) {
                 notifHelper.createNotificationChannels()
@@ -135,6 +138,7 @@ class SettingsActivity : AppCompatActivity() {
 
         // ── Dark mode toggle ──────────────────────────────────────────────────
         binding.switchDarkMode.setOnCheckedChangeListener { _, checked ->
+            if (programmaticDarkMode) return@setOnCheckedChangeListener
             viewModel.setDarkMode(checked)
             applyDarkMode(checked)
         }
@@ -195,10 +199,18 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
         lifecycleScope.launch {
-            viewModel.notifEnabled.collectLatest { binding.switchNotifications.isChecked = it }
+            viewModel.notifEnabled.collectLatest { 
+                programmaticNotif = true
+                binding.switchNotifications.isChecked = it 
+                programmaticNotif = false
+            }
         }
         lifecycleScope.launch {
-            viewModel.darkMode.collectLatest { binding.switchDarkMode.isChecked = it }
+            viewModel.darkMode.collectLatest { 
+                programmaticDarkMode = true
+                binding.switchDarkMode.isChecked = it 
+                programmaticDarkMode = false
+            }
         }
     }
 

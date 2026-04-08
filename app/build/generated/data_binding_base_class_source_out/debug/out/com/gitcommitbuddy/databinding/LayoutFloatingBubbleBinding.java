@@ -20,10 +20,15 @@ public final class LayoutFloatingBubbleBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
+  public final FrameLayout bubbleBackground;
+
+  @NonNull
   public final ImageView ivStatus;
 
-  private LayoutFloatingBubbleBinding(@NonNull FrameLayout rootView, @NonNull ImageView ivStatus) {
+  private LayoutFloatingBubbleBinding(@NonNull FrameLayout rootView,
+      @NonNull FrameLayout bubbleBackground, @NonNull ImageView ivStatus) {
     this.rootView = rootView;
+    this.bubbleBackground = bubbleBackground;
     this.ivStatus = ivStatus;
   }
 
@@ -54,13 +59,19 @@ public final class LayoutFloatingBubbleBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.bubbleBackground;
+      FrameLayout bubbleBackground = ViewBindings.findChildViewById(rootView, id);
+      if (bubbleBackground == null) {
+        break missingId;
+      }
+
       id = R.id.ivStatus;
       ImageView ivStatus = ViewBindings.findChildViewById(rootView, id);
       if (ivStatus == null) {
         break missingId;
       }
 
-      return new LayoutFloatingBubbleBinding((FrameLayout) rootView, ivStatus);
+      return new LayoutFloatingBubbleBinding((FrameLayout) rootView, bubbleBackground, ivStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

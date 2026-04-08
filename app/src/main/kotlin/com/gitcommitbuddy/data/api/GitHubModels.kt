@@ -76,6 +76,8 @@ data class GitHubUser(
 data class CommitStatus(
     /** True if at least one PushEvent was found for today (UTC). */
     val committedToday: Boolean,
+    /** Total number of commits found for today. */
+    val todayCommitCount: Int = 0,
     /** ISO-8601 timestamp of the most recent commit event, or null. */
     val lastCommitTime: String?,
     /** Name of the repo of the most recent commit, or null. */

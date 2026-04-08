@@ -33,13 +33,13 @@ public final class AppDatabase_Impl extends AppDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `commit_cache` (`id` INTEGER NOT NULL, `committedToday` INTEGER NOT NULL, `lastCommitTime` TEXT, `lastCommitRepo` TEXT, `lastCommitMessage` TEXT, `currentStreak` INTEGER NOT NULL, `cachedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `commit_cache` (`id` INTEGER NOT NULL, `committedToday` INTEGER NOT NULL, `todayCommitCount` INTEGER NOT NULL, `lastCommitTime` TEXT, `lastCommitRepo` TEXT, `lastCommitMessage` TEXT, `currentStreak` INTEGER NOT NULL, `cachedAt` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS `daily_commits` (`dateKey` TEXT NOT NULL, `didCommit` INTEGER NOT NULL, `commitCount` INTEGER NOT NULL, `lastCommitTime` TEXT, PRIMARY KEY(`dateKey`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e9fe0b1d9f83e96122043e2b92f06c5f')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f33056cf970a42aa1257d4a91e1e180d')");
       }
 
       @Override
@@ -89,9 +89,10 @@ public final class AppDatabase_Impl extends AppDatabase {
       @NonNull
       public RoomOpenHelper.ValidationResult onValidateSchema(
           @NonNull final SupportSQLiteDatabase db) {
-        final HashMap<String, TableInfo.Column> _columnsCommitCache = new HashMap<String, TableInfo.Column>(7);
+        final HashMap<String, TableInfo.Column> _columnsCommitCache = new HashMap<String, TableInfo.Column>(8);
         _columnsCommitCache.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCommitCache.put("committedToday", new TableInfo.Column("committedToday", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsCommitCache.put("todayCommitCount", new TableInfo.Column("todayCommitCount", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCommitCache.put("lastCommitTime", new TableInfo.Column("lastCommitTime", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCommitCache.put("lastCommitRepo", new TableInfo.Column("lastCommitRepo", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCommitCache.put("lastCommitMessage", new TableInfo.Column("lastCommitMessage", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -122,7 +123,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "e9fe0b1d9f83e96122043e2b92f06c5f", "64d72df8eb15e03d480f2ff490e458f4");
+    }, "f33056cf970a42aa1257d4a91e1e180d", "4d9d2c23464bac699a7fe2752b69835d");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
