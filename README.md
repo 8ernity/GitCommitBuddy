@@ -17,6 +17,8 @@ A production-ready Android app that displays a **draggable floating bubble** (ch
 
 [Download Latest Release](https://github.com/8ernity/GitCommitBuddy/releases)
 
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
+
 ## 💡 Why GitCommitBuddy?
 
 Maintaining a daily GitHub streak is hard.
@@ -45,7 +47,7 @@ Perfect for developers preparing for placements or building habits.
 | Dark mode | Material 3 DayNight |
 | Bubble color picker | 5 color swatches |
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🏗️ Project Structure
 
@@ -103,7 +105,7 @@ GitCommitBuddy/
 └── gradle.properties
 ```
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## ⚙️ Prerequisites
 
@@ -115,7 +117,7 @@ GitCommitBuddy/
 | Gradle | 8.4 |
 | Kotlin | 1.9.22 |
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🚀 Quick Setup (5 steps)
 
@@ -158,7 +160,7 @@ GitCommitBuddy/
 2. A system dialog appears — tap **Allow** to grant overlay permission
 3. The green bubble appears over all your apps! 🟢
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🔐 Where Is My Token Stored?
 
@@ -168,7 +170,7 @@ Your PAT is stored **only on your device** using Jetpack DataStore (encrypted An
 - ❌ Never backed up to cloud
 - ✅ Transmitted over HTTPS only
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🧪 Testing the App
 
@@ -186,7 +188,7 @@ Open **App Inspection** in Android Studio → **Background Task Inspector** → 
 Settings → Apps → GitCommit Buddy → Display over other apps → Allow
 ```
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🏛️ Architecture Deep Dive
 
@@ -207,7 +209,7 @@ FloatingWidget    (StateFlow/LiveData)  ├── CommitCacheDao (Room)
 5. Results saved to Room cache
 6. Room emits via `Flow` → ViewModel → UI updates
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 📋 Permissions Explained
 
@@ -222,7 +224,7 @@ FloatingWidget    (StateFlow/LiveData)  ├── CommitCacheDao (Room)
 | `REQUEST_IGNORE_BATTERY_OPTIMIZATIONS` | Ensure reliable background work |
 | `SCHEDULE_EXACT_ALARM` | Precise reminder timing (Android 12+) |
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🔧 Customisation
 
@@ -245,7 +247,7 @@ In `GitHubRepository.kt`, filter for additional event types:
 val prEvents = events.filter { it.type == "PullRequestEvent" }
 ```
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🐛 Common Issues
 
@@ -259,7 +261,7 @@ val prEvents = events.filter { it.type == "PullRequestEvent" }
 | WorkManager not firing | Disable battery optimisation for the app |
 | Gradle sync fails | File → Invalidate Caches → Restart |
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 📦 Key Dependencies
 
@@ -290,7 +292,7 @@ com.google.dagger:hilt-android:2.50               // Hilt
 com.github.bumptech.glide:glide:4.16.0
 ```
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🚀 Building a Release APK
 
@@ -322,7 +324,7 @@ android {
 Build → Generate Signed Bundle/APK → APK → release
 ```
 
----
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 📝 License
 
