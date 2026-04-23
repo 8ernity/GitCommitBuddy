@@ -5,7 +5,10 @@ import com.gitcommitbuddy.data.db.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,48 +25,41 @@ class GitHubRepository @Inject constructor(
 
     suspend fun refreshCommitStatus(
         username: String,
-        token: String
+        token: String,
+        commitLimit: Int = 1
     ): ApiResult<CommitStatus> = withContext(Dispatchers.IO) {
         if (username.isBlank()) {
             return@withContext ApiResult.Error("GitHub username not configured.")
         }
         try {
-            val response = api.getUserEvents(username, perPage = 100, page = 1)
-            if (!response.isSuccessful) {
-                val msg = when (response.code()) {
-                    401  -> "Invalid GitHub token. Please update in Settings."
-                    403  -> "API rate limit exceeded. Try again later."
-                    404  -> "GitHub user '$username' not found."
-                    else -> "GitHub API error: HTTP ${response.code()}"
-                }
-                return@withContext ApiResult.Error(msg, response.code())
-            }
-
-            val events     = response.body() ?: emptyList()
-            val pushEvents = events.filter { it.type == "PushEvent" }
-            val todayUtc   = todayUtcString()
-            val todayPushes = pushEvents.filter { it.createdAt.startsWith(todayUtc) }
+            val todayDate = LocalDate.now(ZoneId.systemDefault()).toString()
             
-            // Log for debugging
-            println("GCB_DEBUG: Today's push events: ${todayPushes.size}")
-            todayPushes.forEach { event ->
-                println("GCB_DEBUG: Event ${event.id} has ${event.payload?.commits?.size} commits (size field: ${event.payload?.size})")
+            // 1. Fetch Today's Count via Search API (Source of Truth for Today)
+            val searchResponse = api.searchCommits("author:$username author-date:$todayDate")
+            val todayCommitCount = if (searchResponse.isSuccessful) {
+                searchResponse.body()?.totalCount ?: 0
+            } else {
+                0
             }
 
-            val todayCommitCount = todayPushes.sumOf { event ->
-                val payload = event.payload
-                // Try commits list size first, then fallback to size field, then 1 if it's a PushEvent
-                payload?.commits?.size ?: payload?.size ?: 1
-            }
-            val mostRecent  = pushEvents.firstOrNull()
+            // 2. Fetch History for Streak via Search API (Last 30 Days)
+            // This ensures we get the 24-day streak even if events are filtered or missing.
+            val thirtyDaysAgo = LocalDate.now(ZoneId.systemDefault()).minusDays(35).toString()
+            val historyResponse = api.searchCommits("author:$username author-date:>$thirtyDaysAgo", perPage = 100)
+            val allHistoryCommits = historyResponse.body()?.items ?: emptyList()
+
+            // 3. Fetch Events for real-time repo metadata
+            val eventsResponse = api.getUserEvents(username, perPage = 10)
+            val pushEvents = (eventsResponse.body() ?: emptyList()).filter { it.type.equals("PushEvent", ignoreCase = true) }
+            val mostRecent = pushEvents.firstOrNull()
 
             val status = CommitStatus(
-                committedToday    = todayCommitCount >= 7,
+                committedToday    = todayCommitCount >= commitLimit,
                 todayCommitCount  = todayCommitCount,
-                lastCommitTime    = mostRecent?.createdAt,
-                lastCommitRepo    = mostRecent?.repo?.name,
-                lastCommitMessage = mostRecent?.payload?.commits?.firstOrNull()?.message,
-                currentStreak     = calculateStreak(pushEvents)
+                lastCommitTime    = mostRecent?.createdAt ?: allHistoryCommits.firstOrNull()?.commit?.author?.date,
+                lastCommitRepo    = mostRecent?.repo?.name ?: allHistoryCommits.firstOrNull()?.repository?.name,
+                lastCommitMessage = mostRecent?.payload?.commits?.firstOrNull()?.message ?: allHistoryCommits.firstOrNull()?.commit?.message,
+                currentStreak     = calculateStreakFromSearch(allHistoryCommits, todayCommitCount)
             )
 
             cacheDao.upsert(
@@ -76,10 +72,20 @@ class GitHubRepository @Inject constructor(
                     currentStreak     = status.currentStreak
                 )
             )
-            updateDailyLog(pushEvents)
+            updateDailyLogFromSearch(allHistoryCommits, todayCommitCount, todayDate)
             ApiResult.Success(status)
         } catch (e: Exception) {
             ApiResult.Error("Network error: ${e.localizedMessage ?: "Unknown error"}")
+        }
+    }
+
+    private fun isOlderThanToday(utcTime: String): Boolean {
+        return try {
+            val eventDate = Instant.parse(utcTime).atZone(ZoneId.systemDefault()).toLocalDate()
+            val today = LocalDate.now(ZoneId.systemDefault())
+            eventDate.isBefore(today)
+        } catch (e: Exception) {
+            false
         }
     }
 
@@ -99,52 +105,72 @@ class GitHubRepository @Inject constructor(
             }
         }
 
-    private fun calculateStreak(events: List<GitHubEvent>): Int {
-        val daysWithCommits = events
-            .filter { it.type == "PushEvent" }
-            .map { it.createdAt.substring(0, 10) }
-            .toSortedSet(reverseOrder())
+    private fun calculateStreakFromSearch(commits: List<CommitSearchItem>, todayCount: Int): Int {
+        val daysWithCommits = commits
+            .map { it.commit.author.date.take(10) } // YYYY-MM-DD
+            .toMutableSet()
+        
+        if (todayCount > 0) daysWithCommits.add(todayLocalString())
 
-        val dateFmt = SimpleDateFormat("yyyy-MM-dd", Locale.US).apply {
-            timeZone = TimeZone.getTimeZone("UTC")
-        }
-        val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        val sortedDays = daysWithCommits.toSortedSet(reverseOrder())
         var streak = 0
-        var day = dateFmt.format(cal.time)
+        var currentDay = LocalDate.now(ZoneId.systemDefault())
 
-        while (daysWithCommits.contains(day)) {
+        // If no commits today, start checking from yesterday to see if streak is alive
+        if (!sortedDays.contains(currentDay.toString())) {
+            currentDay = currentDay.minusDays(1)
+        }
+
+        while (sortedDays.contains(currentDay.toString())) {
             streak++
-            cal.add(Calendar.DAY_OF_YEAR, -1)
-            day = dateFmt.format(cal.time)
+            currentDay = currentDay.minusDays(1)
         }
         return streak
     }
 
-    private suspend fun updateDailyLog(events: List<GitHubEvent>) {
-        val byDay = events.filter { it.type == "PushEvent" }
-            .groupBy { it.createdAt.substring(0, 10) }
+    private suspend fun updateDailyLogFromSearch(commits: List<CommitSearchItem>, todayCount: Int, todayDate: String) {
+        val byDay = commits.groupBy { it.commit.author.date.take(10) }
 
-        byDay.forEach { (dateKey, dayEvents) ->
+        byDay.forEach { (dateKey, dayCommits) ->
             dailyDao.upsert(
                 DailyCommitEntity(
                     dateKey        = dateKey,
                     didCommit      = true,
-                    commitCount    = dayEvents.sumOf { it.payload?.size ?: 0 },
-                    lastCommitTime = dayEvents.maxByOrNull { it.createdAt }?.createdAt
+                    commitCount    = if (dateKey == todayDate) maxOf(todayCount, dayCommits.size) else dayCommits.size,
+                    lastCommitTime = dayCommits.maxByOrNull { it.commit.author.date }?.commit?.author?.date
                 )
             )
         }
+        
+        if (todayCount > 0 && !byDay.containsKey(todayDate)) {
+            dailyDao.upsert(DailyCommitEntity(todayDate, true, todayCount, null))
+        }
 
-        val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-        cal.add(Calendar.DAY_OF_YEAR, -90)
-        val cutoff = SimpleDateFormat("yyyy-MM-dd", Locale.US).apply {
-            timeZone = TimeZone.getTimeZone("UTC")
-        }.format(cal.time)
+        val cutoff = LocalDate.now(ZoneId.systemDefault()).minusDays(90).toString()
         dailyDao.pruneOlderThan(cutoff)
     }
 
-    private fun todayUtcString(): String =
-        SimpleDateFormat("yyyy-MM-dd", Locale.US)
-            .apply { timeZone = TimeZone.getTimeZone("UTC") }
-            .format(Date())
+    private fun isToday(utcTime: String): Boolean {
+        return try {
+            val eventInstant = Instant.parse(utcTime)
+            val eventDate = eventInstant.atZone(ZoneId.systemDefault()).toLocalDate()
+            val today = LocalDate.now(ZoneId.systemDefault())
+            eventDate == today
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    private fun toLocalDateString(utcTime: String): String {
+        return try {
+            Instant.parse(utcTime)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate()
+                .toString()
+        } catch (e: Exception) {
+            utcTime.take(10)
+        }
+    }
+
+    private fun todayLocalString(): String = LocalDate.now(ZoneId.systemDefault()).toString()
 }

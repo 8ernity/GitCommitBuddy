@@ -116,10 +116,14 @@ class NotificationHelper @Inject constructor(
     fun buildForegroundNotification(): Notification =
         NotificationCompat.Builder(context, CHANNEL_FOREGROUND)
             .setSmallIcon(R.drawable.ic_notification_commit)
-            .setContentTitle("GitCommitBuddy Running")
-            .setContentText("Tap to open the app")
+            .setContentTitle("GitCommitBuddy is Active")
+            .setContentText("Monitoring your daily streak")
             .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setCategory(Notification.CATEGORY_SERVICE)
+            .setGroup("Gcb_Foreground_Group")
+            .setGroupSummary(false)
             .setOngoing(true)
+            .setLocalOnly(true)
             .setContentIntent(openAppPendingIntent())
             .build()
 

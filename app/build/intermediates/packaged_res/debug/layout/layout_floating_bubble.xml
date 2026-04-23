@@ -10,39 +10,35 @@
     android:layout_width="64dp"
     android:layout_height="64dp">
 
-    <!-- Outer shadow ring -->
-    <View
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="@drawable/bg_bubble_shadow" />
-
     <!-- Main bubble circle -->
     <FrameLayout
         android:id="@+id/bubbleBackground"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
         android:layout_gravity="center"
         android:background="@drawable/bg_bubble_main"
-        android:elevation="8dp">
+        android:elevation="12dp">
 
         <!-- GitHub logo icon -->
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_github"
             android:contentDescription="GitHub"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            android:alpha="0.9" />
 
-        <!-- Status dot (green = committed, red = not yet) -->
+        <!-- Status dot -->
         <ImageView
             android:id="@+id/ivStatus"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_gravity="bottom|end"
-            android:layout_margin="0dp"
+            android:layout_margin="2dp"
             android:src="@drawable/ic_warning"
             android:background="@drawable/bg_status_dot"
-            android:padding="2dp" />
+            android:padding="3dp"
+            android:elevation="4dp" />
     </FrameLayout>
 </FrameLayout>

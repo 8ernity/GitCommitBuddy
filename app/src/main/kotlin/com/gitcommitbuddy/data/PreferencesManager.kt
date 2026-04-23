@@ -27,8 +27,8 @@ class PreferencesManager @Inject constructor(
         val WIDGET_ENABLED   = booleanPreferencesKey("widget_enabled")
         val NOTIFICATIONS_ON = booleanPreferencesKey("notifications_on")
         val DARK_MODE        = booleanPreferencesKey("dark_mode")
-        val BUBBLE_COLOR     = stringPreferencesKey("bubble_color")
         val FIRST_LAUNCH     = booleanPreferencesKey("first_launch")
+        val COMMIT_LIMIT     = intPreferencesKey("commit_limit")
     }
 
     object Defaults {
@@ -36,7 +36,7 @@ class PreferencesManager @Inject constructor(
         const val REMINDER_MINUTE = 0
         const val WIDGET_ENABLED  = true
         const val NOTIFICATIONS   = true
-        const val BUBBLE_COLOR    = "#1F8348"
+        const val COMMIT_LIMIT    = 1
     }
 
     val githubUsername: Flow<String> = context.dataStore.data
@@ -60,11 +60,11 @@ class PreferencesManager @Inject constructor(
     val darkMode: Flow<Boolean> = context.dataStore.data
         .catchIO().map { it[DARK_MODE] ?: false }
 
-    val bubbleColor: Flow<String> = context.dataStore.data
-        .catchIO().map { it[BUBBLE_COLOR] ?: Defaults.BUBBLE_COLOR }
-
     val isFirstLaunch: Flow<Boolean> = context.dataStore.data
         .catchIO().map { it[FIRST_LAUNCH] ?: true }
+
+    val commitLimit: Flow<Int> = context.dataStore.data
+        .catchIO().map { it[COMMIT_LIMIT] ?: Defaults.COMMIT_LIMIT }
 
     suspend fun saveGitHubCredentials(username: String, token: String) {
         context.dataStore.edit { prefs ->
@@ -92,8 +92,8 @@ class PreferencesManager @Inject constructor(
         context.dataStore.edit { it[DARK_MODE] = enabled }
     }
 
-    suspend fun setBubbleColor(hexColor: String) {
-        context.dataStore.edit { it[BUBBLE_COLOR] = hexColor }
+    suspend fun setCommitLimit(limit: Int) {
+        context.dataStore.edit { it[COMMIT_LIMIT] = limit }
     }
 
     suspend fun markFirstLaunchComplete() {
@@ -111,7 +111,7 @@ class PreferencesManager @Inject constructor(
             widgetEnabled   = prefs[WIDGET_ENABLED] ?: Defaults.WIDGET_ENABLED,
             notificationsOn = prefs[NOTIFICATIONS_ON] ?: Defaults.NOTIFICATIONS,
             darkMode        = prefs[DARK_MODE] ?: false,
-            bubbleColor     = prefs[BUBBLE_COLOR] ?: Defaults.BUBBLE_COLOR
+            commitLimit     = prefs[COMMIT_LIMIT] ?: Defaults.COMMIT_LIMIT
         )
     }
 
@@ -128,5 +128,5 @@ data class AppPrefsSnapshot(
     val widgetEnabled: Boolean   = true,
     val notificationsOn: Boolean = true,
     val darkMode: Boolean        = false,
-    val bubbleColor: String      = PreferencesManager.Defaults.BUBBLE_COLOR
+    val commitLimit: Int         = PreferencesManager.Defaults.COMMIT_LIMIT
 )

@@ -1,17 +1,17 @@
-#Mon Apr 06 15:23:51 IST 2026
-base.0=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.10=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.11=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
-base.12=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.2=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
-base.3=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
-base.4=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.5=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
-base.6=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
-base.7=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.8=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
-base.9=C\:\\Users\\arpan\\Downloads\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+#Thu Apr 23 23:52:06 IST 2026
+base.0=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.10=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+base.11=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
+base.12=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.2=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
+base.3=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.4=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+base.5=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
+base.6=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+base.7=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
+base.8=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+base.9=D\:\\Projects\\GitCommitBuddy_v3_2\\GitCommitBuddy\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.10=7/classes.dex

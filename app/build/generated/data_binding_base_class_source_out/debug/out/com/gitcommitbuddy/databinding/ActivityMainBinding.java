@@ -4,6 +4,7 @@ package com.gitcommitbuddy.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +17,6 @@ import androidx.viewbinding.ViewBindings;
 import com.gitcommitbuddy.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -33,7 +33,7 @@ public final class ActivityMainBinding implements ViewBinding {
   public final MaterialButton btnOpenGitHub;
 
   @NonNull
-  public final MaterialCardView cardCommitStatus;
+  public final FrameLayout cardCommitStatus;
 
   @NonNull
   public final ImageView ivAvatar;
@@ -88,7 +88,7 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull CoordinatorLayout rootView,
       @NonNull MaterialButton btnGoToSettings, @NonNull MaterialButton btnOpenGitHub,
-      @NonNull MaterialCardView cardCommitStatus, @NonNull ImageView ivAvatar,
+      @NonNull FrameLayout cardCommitStatus, @NonNull ImageView ivAvatar,
       @NonNull ImageView ivStatusIcon, @NonNull LinearLayout layoutContent,
       @NonNull LinearLayout layoutError, @NonNull LinearLayout layoutNotConfigured,
       @NonNull SwipeRefreshLayout swipeRefresh, @NonNull SwitchMaterial switchWidget,
@@ -159,7 +159,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       id = R.id.cardCommitStatus;
-      MaterialCardView cardCommitStatus = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout cardCommitStatus = ViewBindings.findChildViewById(rootView, id);
       if (cardCommitStatus == null) {
         break missingId;
       }

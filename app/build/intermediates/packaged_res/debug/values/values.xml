@@ -6,9 +6,12 @@
     <color name="github_green_dark">#196F3D</color>
     <color name="github_green_light">#27AE60</color>
     <color name="md_theme_dark_background">#1A1C1A</color>
+    <color name="md_theme_dark_error">#FFB4AB</color>
     <color name="md_theme_dark_onPrimary">#003920</color>
+    <color name="md_theme_dark_onSecondary">#223526</color>
     <color name="md_theme_dark_onSurface">#E2E3DE</color>
     <color name="md_theme_dark_primary">#8CD8A4</color>
+    <color name="md_theme_dark_secondary">#B6CBB8</color>
     <color name="md_theme_dark_surface">#1A1C1A</color>
     <color name="md_theme_light_background">#F8FBF7</color>
     <color name="md_theme_light_error">#BA1A1A</color>
@@ -70,7 +73,7 @@
         <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
 
         
-        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="android:colorBackground">#80A8F5C2</item>
         <item name="colorSurface">@color/md_theme_light_surface</item>
         <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
 
@@ -78,8 +81,10 @@
         <item name="colorError">@color/md_theme_light_error</item>
 
         
-        <item name="android:statusBarColor">@color/github_green</item>
-        <item name="android:navigationBarColor">@color/md_theme_light_surface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
 
         
         <item name="android:windowAnimationStyle">@style/WindowAnimationStyle</item>

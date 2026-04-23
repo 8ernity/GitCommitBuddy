@@ -17,54 +17,54 @@
 17
 18    <!-- Draw the floating bubble over all other apps -->
 19    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-19-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:10:5-78
-19-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:10:22-75
+19-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:10:5-78
+19-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:10:22-75
 20
 21    <!-- GitHub API calls -->
 22    <uses-permission android:name="android.permission.INTERNET" />
-22-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:13:5-67
-22-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:13:22-64
+22-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:13:5-67
+22-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:13:22-64
 23    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-23-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:14:5-79
-23-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:14:22-76
+23-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:14:5-79
+23-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:14:22-76
 24
 25    <!-- Push notifications (runtime request on Android 13+) -->
 26    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-26-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:17:5-77
-26-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:17:22-74
+26-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:17:5-77
+26-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:17:22-74
 27
 28    <!-- Vibration feedback -->
 29    <uses-permission android:name="android.permission.VIBRATE" />
-29-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:20:5-66
-29-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:20:22-63
+29-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:20:5-66
+29-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:20:22-63
 30
 31    <!-- Keep WorkManager alive across reboots -->
 32    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-32-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:23:5-81
-32-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:23:22-78
+32-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:23:5-81
+32-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:23:22-78
 33
 34    <!-- Required to call startForeground() -->
 35    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-35-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:26:5-77
-35-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:26:22-74
+35-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:26:5-77
+35-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:26:22-74
 36
 37    <!--
 38         Required on Android 14+ (API 34) for foregroundServiceType="specialUse".
 39         Without this the OS rejects startForeground() at runtime.
 40    -->
 41    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-41-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:32:5-89
-41-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:32:22-86
+41-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:32:5-89
+41-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:32:22-86
 42
 43    <!-- Battery optimisation exclusion dialog -->
 44    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-44-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:35:5-95
-44-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:35:22-92
+44-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:35:5-95
+44-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:35:22-92
 45
 46    <!-- WorkManager wake lock -->
 47    <uses-permission android:name="android.permission.WAKE_LOCK" />
-47-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:38:5-68
-47-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:38:22-65
+47-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:38:5-68
+47-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:38:22-65
 48
 49    <permission
 49-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
@@ -78,63 +78,63 @@
 53-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
 54
 55    <application
-55-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:40:5-113:19
+55-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:40:5-113:19
 56        android:name="com.gitcommitbuddy.GitCommitBuddyApp"
-56-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:41:9-42
+56-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:41:9-42
 57        android:allowBackup="true"
-57-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:42:9-35
+57-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:42:9-35
 58        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 58-->[androidx.core:core:1.12.0] C:\Users\arpan\.gradle\caches\transforms-3\f875a70cad7015ec250c64ae1089a627\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 59        android:dataExtractionRules="@xml/data_extraction_rules"
-59-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:43:9-65
+59-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:43:9-65
 60        android:debuggable="true"
 61        android:extractNativeLibs="false"
 62        android:fullBackupContent="@xml/backup_rules"
-62-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:44:9-54
+62-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:44:9-54
 63        android:icon="@mipmap/ic_launcher"
-63-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:45:9-43
+63-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:45:9-43
 64        android:label="@string/app_name"
-64-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:46:9-41
+64-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:46:9-41
 65        android:roundIcon="@mipmap/ic_launcher_round"
-65-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:47:9-54
+65-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:47:9-54
 66        android:supportsRtl="true"
-66-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:48:9-35
+66-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:48:9-35
 67        android:testOnly="true"
 68        android:theme="@style/Theme.GitCommitBuddy" >
-68-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:49:9-52
+68-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:49:9-52
 69
 70        <!-- ── Main launcher activity ──────────────────────────────────────── -->
 71        <activity
-71-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:53:9-62:20
+71-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:53:9-62:20
 72            android:name="com.gitcommitbuddy.ui.main.MainActivity"
-72-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:54:13-49
+72-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:54:13-49
 73            android:exported="true"
-73-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:55:13-36
+73-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:55:13-36
 74            android:launchMode="singleTop"
-74-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:56:13-43
+74-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:56:13-43
 75            android:windowSoftInputMode="adjustResize" >
-75-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:57:13-55
+75-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:57:13-55
 76            <intent-filter>
-76-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:58:13-61:29
+76-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:58:13-61:29
 77                <action android:name="android.intent.action.MAIN" />
-77-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:59:17-69
-77-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:59:25-66
+77-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:59:17-69
+77-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:59:25-66
 78
 79                <category android:name="android.intent.category.LAUNCHER" />
-79-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:60:17-77
-79-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:60:27-74
+79-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:60:17-77
+79-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:60:27-74
 80            </intent-filter>
 81        </activity>
 82
 83        <!-- ── Settings screen ────────────────────────────────────────────── -->
 84        <activity
-84-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:65:9-68:66
+84-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:65:9-68:66
 85            android:name="com.gitcommitbuddy.ui.settings.SettingsActivity"
-85-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:66:13-57
+85-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:66:13-57
 86            android:exported="false"
-86-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:67:13-37
+86-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:67:13-37
 87            android:parentActivityName="com.gitcommitbuddy.ui.main.MainActivity" />
-87-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:68:13-63
+87-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:68:13-63
 88
 89        <!-- ── Floating overlay service ───────────────────────────────────── -->
 90        <!--
@@ -144,31 +144,31 @@
 94            we need specialUse (reviewed by Google Play policy).
 95        -->
 96        <service
-96-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:77:9-85:19
+96-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:77:9-85:19
 97            android:name="com.gitcommitbuddy.service.FloatingWidgetService"
-97-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:78:13-58
+97-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:78:13-58
 98            android:exported="false"
-98-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:79:13-37
+98-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:79:13-37
 99            android:foregroundServiceType="specialUse"
-99-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:80:13-55
+99-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:80:13-55
 100            android:stopWithTask="false" >
-100-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:81:13-41
+100-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:81:13-41
 101            <property
-101-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:82:13-84:138
+101-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:82:13-84:138
 102                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-102-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:83:17-76
+102-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:83:17-76
 103                android:value="Displays a draggable floating bubble that shows the user&apos;s daily GitHub commit status over other apps." />
-103-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:84:17-135
+103-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:84:17-135
 104        </service>
 105
 106        <!-- ── WorkManager: disable default auto-init so Hilt can own it ──── -->
 107        <provider
 108            android:name="androidx.startup.InitializationProvider"
-108-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:89:13-67
+108-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:89:13-67
 109            android:authorities="com.gitcommitbuddy.androidx-startup"
-109-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:90:13-68
+109-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:90:13-68
 110            android:exported="false" >
-110-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:91:13-37
+110-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:91:13-37
 111            <meta-data
 111-->[androidx.emoji2:emoji2:1.2.0] C:\Users\arpan\.gradle\caches\transforms-3\b86e7fdf2d69161a6dcc0d8c44644b51\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
 112                android:name="androidx.emoji2.text.EmojiCompatInitializer"
@@ -191,26 +191,26 @@
 121
 122        <!-- ── Boot receiver: reschedules WorkManager after device reboot ─── -->
 123        <receiver
-123-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:100:9-106:20
+123-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:100:9-106:20
 124            android:name="com.gitcommitbuddy.service.BootReceiver"
-124-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:101:13-49
+124-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:101:13-49
 125            android:exported="true" >
-125-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:102:13-36
+125-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:102:13-36
 126            <intent-filter>
-126-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:103:13-105:29
+126-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:103:13-105:29
 127                <action android:name="android.intent.action.BOOT_COMPLETED" />
-127-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:17-79
-127-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:25-76
+127-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:17-79
+127-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:25-76
 128            </intent-filter>
 129        </receiver>
 130
 131        <!-- ── Notification action receiver (Open GitHub / Dismiss) ─────── -->
 132        <receiver
-132-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:109:9-111:40
+132-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:109:9-111:40
 133            android:name="com.gitcommitbuddy.service.NotificationActionReceiver"
-133-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:110:13-63
+133-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:110:13-63
 134            android:exported="false" />
-134-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:111:13-37
+134-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:111:13-37
 135
 136        <service
 136-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:39:9-45:35
@@ -345,8 +345,8 @@
 202            <intent-filter>
 202-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:116:13-120:29
 203                <action android:name="android.intent.action.BOOT_COMPLETED" />
-203-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:17-79
-203-->C:\Users\arpan\Downloads\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:25-76
+203-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:17-79
+203-->D:\Projects\GitCommitBuddy_v3_2\GitCommitBuddy\app\src\main\AndroidManifest.xml:104:25-76
 204                <action android:name="android.intent.action.TIME_SET" />
 204-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:17-73
 204-->[androidx.work:work-runtime:2.9.0] C:\Users\arpan\.gradle\caches\transforms-3\200e19d29f149cf7553a43bda18b8c6b\transformed\work-runtime-2.9.0\AndroidManifest.xml:118:25-70

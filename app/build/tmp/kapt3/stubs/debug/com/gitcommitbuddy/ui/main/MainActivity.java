@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
 import com.gitcommitbuddy.R;
 import com.gitcommitbuddy.data.PreferencesManager;
 import com.gitcommitbuddy.databinding.ActivityMainBinding;

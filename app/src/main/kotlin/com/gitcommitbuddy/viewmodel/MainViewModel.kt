@@ -48,7 +48,7 @@ class MainViewModel @Inject constructor(
                 return@launch
             }
             _uiState.value = when (val result =
-                repository.refreshCommitStatus(snapshot.username, snapshot.token)) {
+                repository.refreshCommitStatus(snapshot.username, snapshot.token, snapshot.commitLimit)) {
                 is ApiResult.Success -> CommitUiState.Loaded(result.data)
                 is ApiResult.Error   -> CommitUiState.Error(result.message)
                 else                 -> CommitUiState.Loading

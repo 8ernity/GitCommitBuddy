@@ -130,7 +130,7 @@ class ReminderWorker @AssistedInject constructor(
         if (!snapshot.notificationsOn || snapshot.username.isBlank()) return Result.success()
 
         return try {
-            val result = repository.refreshCommitStatus(snapshot.username, snapshot.token)
+            val result = repository.refreshCommitStatus(snapshot.username, snapshot.token, snapshot.commitLimit)
             when (result) {
                 is ApiResult.Success -> {
                     notifHelper.showReminderNotification(result.data.committedToday)
@@ -172,7 +172,7 @@ class FollowUpReminderWorker @AssistedInject constructor(
         if (!snapshot.notificationsOn || snapshot.username.isBlank()) return Result.success()
 
         return try {
-            val result    = repository.refreshCommitStatus(snapshot.username, snapshot.token)
+            val result    = repository.refreshCommitStatus(snapshot.username, snapshot.token, snapshot.commitLimit)
             val committed = (result as? ApiResult.Success)?.data?.committedToday ?: false
             if (!committed) notifHelper.showMissedCommitAlert()
             Result.success()

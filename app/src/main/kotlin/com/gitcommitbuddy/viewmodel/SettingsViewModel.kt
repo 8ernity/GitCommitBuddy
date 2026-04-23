@@ -27,7 +27,7 @@ class SettingsViewModel @Inject constructor(
     val token          = prefs.githubToken.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), "")
     val reminderHour   = prefs.reminderHour.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), 21)
     val reminderMinute = prefs.reminderMinute.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), 0)
-    val bubbleColor    = prefs.bubbleColor.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), PreferencesManager.Defaults.BUBBLE_COLOR)
+    val commitLimit     = prefs.commitLimit.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), PreferencesManager.Defaults.COMMIT_LIMIT)
 
     init {
         // Synchronize our MutableStateFlows with the persistent DataStore
@@ -65,7 +65,7 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch { prefs.setDarkMode(enabled) }
     }
 
-    fun setBubbleColor(color: String) {
-        viewModelScope.launch { prefs.setBubbleColor(color) }
+    fun setCommitLimit(limit: Int) {
+        viewModelScope.launch { prefs.setCommitLimit(limit) }
     }
 }

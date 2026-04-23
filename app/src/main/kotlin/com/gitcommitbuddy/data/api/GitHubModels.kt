@@ -3,6 +3,35 @@ package com.gitcommitbuddy.data.api
 import com.google.gson.annotations.SerializedName
 
 // ─────────────────────────────────────────────────────────────────────────────
+// GitHub Search API response models
+// Docs: https://docs.github.com/en/rest/search/search#search-commits
+// ─────────────────────────────────────────────────────────────────────────────
+
+data class SearchCommitsResponse(
+    @SerializedName("total_count") val totalCount: Int,
+    @SerializedName("items")       val items: List<CommitSearchItem>
+)
+
+data class CommitSearchItem(
+    @SerializedName("sha")     val sha: String,
+    @SerializedName("commit")  val commit: CommitDetails,
+    @SerializedName("repository") val repository: Repo,
+    @SerializedName("url")     val url: String
+)
+
+data class CommitDetails(
+    @SerializedName("author")    val author: CommitDetailsAuthor,
+    @SerializedName("committer") val committer: CommitDetailsAuthor,
+    @SerializedName("message")   val message: String
+)
+
+data class CommitDetailsAuthor(
+    @SerializedName("name")  val name: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("date")  val date: String  // ISO-8601
+)
+
+// ─────────────────────────────────────────────────────────────────────────────
 // GitHub REST API response models
 // Docs: https://docs.github.com/en/rest/activity/events
 // ─────────────────────────────────────────────────────────────────────────────
@@ -40,7 +69,10 @@ data class Repo(
 data class Payload(
     @SerializedName("push_id")  val pushId: Long?,
     @SerializedName("size")     val size: Int?,        // number of commits in push
-    @SerializedName("commits")  val commits: List<CommitRef>?
+    @SerializedName("distinct_size") val distinctSize: Int?,
+    @SerializedName("commits")  val commits: List<CommitRef>?,
+    @SerializedName("ref")      val ref: String?,
+    @SerializedName("ref_type") val refType: String?   // "branch" or "tag"
 )
 
 data class CommitRef(

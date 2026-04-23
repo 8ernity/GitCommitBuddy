@@ -3,18 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_activity_gradient">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
             app:title="Settings"
-            app:navigationIcon="@drawable/ic_arrow_back" />
+            app:titleTextColor="@color/white"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/white"
+            app:menu="@menu/menu_settings" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -34,18 +42,18 @@
                 android:layout_height="wrap_content"
                 android:text="GitHub Account"
                 android:textSize="12sp"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="#CCFFFFFF"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
+                android:background="@drawable/bg_glass_card"
+                android:elevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,14 +68,27 @@
                         android:layout_height="wrap_content"
                         android:hint="GitHub Username"
                         app:startIconDrawable="@drawable/ic_github"
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                        app:startIconTint="@color/white"
+                        app:hintTextColor="#B3FFFFFF"
+                        android:textColorHint="#B3FFFFFF"
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#1AFFFFFF"
+                        app:boxStrokeColor="@color/white"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etUsername"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textNoSuggestions"
-                            android:imeOptions="actionNext" />
+                            android:imeOptions="actionNext"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/white" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Token -->
@@ -75,16 +96,28 @@
                         android:id="@+id/tilToken"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="16dp"
                         android:hint="Personal Access Token (PAT)"
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+                        app:hintTextColor="#B3FFFFFF"
+                        android:textColorHint="#B3FFFFFF"
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#1AFFFFFF"
+                        app:boxStrokeColor="@color/white"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etToken"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textPassword"
-                            android:imeOptions="actionDone" />
+                            android:imeOptions="actionDone"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/white" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Token visibility + help row -->
@@ -100,6 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_visibility"
+                            app:tint="@color/white"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:contentDescription="Toggle token visibility"
                             android:padding="8dp" />
@@ -110,24 +144,40 @@
                             android:layout_weight="1"
                             android:text="Show/hide token"
                             android:textSize="12sp"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
+                            android:textColor="#B3FFFFFF" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnHelpToken"
                             style="@style/Widget.Material3.Button.TextButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="How to get one?" />
+                            android:text="How to get one?"
+                            android:textColor="#8CD8A4" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Note: Ensure your token has 'repo' scope for private repositories."
+                        android:textSize="11sp"
+                        android:textColor="#80FFFFFF"
+                        android:paddingStart="8dp"
+                        android:layout_marginTop="-4dp"
+                        android:layout_marginBottom="8dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSaveCredentials"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="Save Credentials" />
+                        android:text="Save Credentials"
+                        app:cornerRadius="24dp"
+                        app:backgroundTint="#4DFFFFFF"
+                        android:textColor="@color/white"
+                        app:strokeColor="#66FFFFFF"
+                        app:strokeWidth="1dp" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
             <!-- ── REMINDER TIME ───────────────────────────────────────────── -->
             <TextView
@@ -135,20 +185,20 @@
                 android:layout_height="wrap_content"
                 android:text="Daily Reminder"
                 android:textSize="12sp"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="#CCFFFFFF"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"
                 android:layout_marginBottom="8dp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:id="@+id/cardReminderTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
+                android:background="@drawable/bg_glass_card"
+                android:elevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -161,7 +211,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_alarm"
-                        app:tint="?attr/colorPrimary" />
+                        app:tint="@color/white" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -175,14 +225,14 @@
                             android:layout_height="wrap_content"
                             android:text="Reminder Time"
                             android:textSize="16sp"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="@color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tap to change"
                             android:textSize="12sp"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
+                            android:textColor="#B3FFFFFF" />
                     </LinearLayout>
 
                     <TextView
@@ -192,9 +242,9 @@
                         android:text="9:00 PM"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:textColor="?attr/colorPrimary" />
+                        android:textColor="@color/white" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
             <!-- ── TOGGLES ─────────────────────────────────────────────────── -->
             <TextView
@@ -202,29 +252,30 @@
                 android:layout_height="wrap_content"
                 android:text="Features"
                 android:textSize="12sp"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="#CCFFFFFF"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"
                 android:layout_marginBottom="8dp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
+                android:background="@drawable/bg_glass_card"
+                android:elevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
                     <!-- Widget toggle -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp"
+                        android:padding="8dp"
                         android:gravity="center_vertical">
 
                         <TextView
@@ -233,7 +284,7 @@
                             android:layout_weight="1"
                             android:text="Floating Widget"
                             android:textSize="16sp"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="@color/white" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switchWidget"
@@ -241,15 +292,12 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
 
-                    <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="?attr/colorOutline" android:layout_marginHorizontal="16dp" />
-
                     <!-- Notifications toggle -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp"
+                        android:padding="8dp"
                         android:gravity="center_vertical">
 
                         <TextView
@@ -258,7 +306,7 @@
                             android:layout_weight="1"
                             android:text="Daily Notifications"
                             android:textSize="16sp"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="@color/white" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switchNotifications"
@@ -266,15 +314,12 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
 
-                    <View android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="?attr/colorOutline" android:layout_marginHorizontal="16dp" />
-
                     <!-- Dark mode toggle -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp"
+                        android:padding="8dp"
                         android:gravity="center_vertical">
 
                         <TextView
@@ -283,7 +328,7 @@
                             android:layout_weight="1"
                             android:text="Dark Mode"
                             android:textSize="16sp"
-                            android:textColor="?attr/colorOnSurface" />
+                            android:textColor="@color/white" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switchDarkMode"
@@ -291,68 +336,88 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
-            <!-- ── BUBBLE COLOR ────────────────────────────────────────────── -->
+            <!-- ── DAILY COMMIT GOAL ─────────────────────────────────────────── -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bubble Color"
+                android:text="Commit Goal"
                 android:textSize="12sp"
-                android:textColor="?attr/colorPrimary"
+                android:textColor="#CCFFFFFF"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"
                 android:layout_marginBottom="8dp" />
 
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp">
+                android:background="@drawable/bg_glass_card"
+                android:elevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="20dp"
-                    android:gravity="center_vertical"
-                    android:spacing="12dp">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <View android:id="@+id/colorGreen"
-                        android:layout_width="40dp" android:layout_height="40dp"
-                        android:background="@drawable/bg_color_swatch_green"
-                        android:layout_marginEnd="12dp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCommitGoal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Daily Commit Goal"
+                        app:startIconDrawable="@drawable/ic_check_circle"
+                        app:startIconTint="@color/white"
+                        app:hintTextColor="#B3FFFFFF"
+                        android:textColorHint="#B3FFFFFF"
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#1AFFFFFF"
+                        app:boxStrokeColor="@color/white"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12dp">
 
-                    <View android:id="@+id/colorBlue"
-                        android:layout_width="40dp" android:layout_height="40dp"
-                        android:background="@drawable/bg_color_swatch_blue"
-                        android:layout_marginEnd="12dp" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etCommitGoal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:imeOptions="actionDone"
+                            android:paddingStart="0dp"
+                            android:paddingEnd="0dp"
+                            android:background="@android:color/transparent"
+                            android:textColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <View android:id="@+id/colorPurple"
-                        android:layout_width="40dp" android:layout_height="40dp"
-                        android:background="@drawable/bg_color_swatch_purple"
-                        android:layout_marginEnd="12dp" />
-
-                    <View android:id="@+id/colorRed"
-                        android:layout_width="40dp" android:layout_height="40dp"
-                        android:background="@drawable/bg_color_swatch_red"
-                        android:layout_marginEnd="12dp" />
-
-                    <View android:id="@+id/colorOrange"
-                        android:layout_width="40dp" android:layout_height="40dp"
-                        android:background="@drawable/bg_color_swatch_orange" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSaveGoal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Save Goal"
+                        app:cornerRadius="24dp"
+                        app:backgroundTint="#4DFFFFFF"
+                        android:textColor="@color/white"
+                        app:strokeColor="#66FFFFFF"
+                        app:strokeWidth="1dp" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+            </FrameLayout>
 
             <!-- ── BATTERY OPTIMISATION ───────────────────────────────────── -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBatteryOptimization"
-                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:text="Disable Battery Optimization"
-                app:icon="@drawable/ic_battery" />
+                app:icon="@drawable/ic_battery"
+                app:cornerRadius="28dp"
+                app:backgroundTint="#33FFFFFF"
+                android:textColor="@color/white"
+                app:strokeColor="#80FFFFFF"
+                app:strokeWidth="1dp"
+                app:iconTint="@color/white" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

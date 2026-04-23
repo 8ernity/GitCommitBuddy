@@ -81,7 +81,8 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
   }
 
   @Override
-  public Object upsert(final CommitCacheEntity entity, final Continuation<? super Unit> arg1) {
+  public Object upsert(final CommitCacheEntity entity,
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -95,11 +96,11 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object clearAll(final Continuation<? super Unit> arg0) {
+  public Object clearAll(final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -118,7 +119,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
           __preparedStmtOfClearAll.release(_stmt);
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
@@ -189,7 +190,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
   }
 
   @Override
-  public Object getCache(final Continuation<? super CommitCacheEntity> arg0) {
+  public Object getCache(final Continuation<? super CommitCacheEntity> $completion) {
     final String _sql = "SELECT * FROM commit_cache WHERE id = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -249,7 +250,7 @@ public final class CommitCacheDao_Impl implements CommitCacheDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @NonNull

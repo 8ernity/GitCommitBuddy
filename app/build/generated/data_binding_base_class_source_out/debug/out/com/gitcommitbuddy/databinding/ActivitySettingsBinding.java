@@ -4,6 +4,7 @@ package com.gitcommitbuddy.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -14,7 +15,6 @@ import androidx.viewbinding.ViewBindings;
 import com.gitcommitbuddy.R;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -36,25 +36,16 @@ public final class ActivitySettingsBinding implements ViewBinding {
   public final MaterialButton btnSaveCredentials;
 
   @NonNull
+  public final MaterialButton btnSaveGoal;
+
+  @NonNull
   public final ImageButton btnToggleToken;
 
   @NonNull
-  public final MaterialCardView cardReminderTime;
+  public final FrameLayout cardReminderTime;
 
   @NonNull
-  public final View colorBlue;
-
-  @NonNull
-  public final View colorGreen;
-
-  @NonNull
-  public final View colorOrange;
-
-  @NonNull
-  public final View colorPurple;
-
-  @NonNull
-  public final View colorRed;
+  public final TextInputEditText etCommitGoal;
 
   @NonNull
   public final TextInputEditText etToken;
@@ -72,6 +63,9 @@ public final class ActivitySettingsBinding implements ViewBinding {
   public final SwitchMaterial switchWidget;
 
   @NonNull
+  public final TextInputLayout tilCommitGoal;
+
+  @NonNull
   public final TextInputLayout tilToken;
 
   @NonNull
@@ -85,30 +79,28 @@ public final class ActivitySettingsBinding implements ViewBinding {
 
   private ActivitySettingsBinding(@NonNull CoordinatorLayout rootView,
       @NonNull MaterialButton btnBatteryOptimization, @NonNull MaterialButton btnHelpToken,
-      @NonNull MaterialButton btnSaveCredentials, @NonNull ImageButton btnToggleToken,
-      @NonNull MaterialCardView cardReminderTime, @NonNull View colorBlue, @NonNull View colorGreen,
-      @NonNull View colorOrange, @NonNull View colorPurple, @NonNull View colorRed,
-      @NonNull TextInputEditText etToken, @NonNull TextInputEditText etUsername,
-      @NonNull SwitchMaterial switchDarkMode, @NonNull SwitchMaterial switchNotifications,
-      @NonNull SwitchMaterial switchWidget, @NonNull TextInputLayout tilToken,
+      @NonNull MaterialButton btnSaveCredentials, @NonNull MaterialButton btnSaveGoal,
+      @NonNull ImageButton btnToggleToken, @NonNull FrameLayout cardReminderTime,
+      @NonNull TextInputEditText etCommitGoal, @NonNull TextInputEditText etToken,
+      @NonNull TextInputEditText etUsername, @NonNull SwitchMaterial switchDarkMode,
+      @NonNull SwitchMaterial switchNotifications, @NonNull SwitchMaterial switchWidget,
+      @NonNull TextInputLayout tilCommitGoal, @NonNull TextInputLayout tilToken,
       @NonNull TextInputLayout tilUsername, @NonNull MaterialToolbar toolbar,
       @NonNull TextView tvReminderTime) {
     this.rootView = rootView;
     this.btnBatteryOptimization = btnBatteryOptimization;
     this.btnHelpToken = btnHelpToken;
     this.btnSaveCredentials = btnSaveCredentials;
+    this.btnSaveGoal = btnSaveGoal;
     this.btnToggleToken = btnToggleToken;
     this.cardReminderTime = cardReminderTime;
-    this.colorBlue = colorBlue;
-    this.colorGreen = colorGreen;
-    this.colorOrange = colorOrange;
-    this.colorPurple = colorPurple;
-    this.colorRed = colorRed;
+    this.etCommitGoal = etCommitGoal;
     this.etToken = etToken;
     this.etUsername = etUsername;
     this.switchDarkMode = switchDarkMode;
     this.switchNotifications = switchNotifications;
     this.switchWidget = switchWidget;
+    this.tilCommitGoal = tilCommitGoal;
     this.tilToken = tilToken;
     this.tilUsername = tilUsername;
     this.toolbar = toolbar;
@@ -160,6 +152,12 @@ public final class ActivitySettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnSaveGoal;
+      MaterialButton btnSaveGoal = ViewBindings.findChildViewById(rootView, id);
+      if (btnSaveGoal == null) {
+        break missingId;
+      }
+
       id = R.id.btnToggleToken;
       ImageButton btnToggleToken = ViewBindings.findChildViewById(rootView, id);
       if (btnToggleToken == null) {
@@ -167,38 +165,14 @@ public final class ActivitySettingsBinding implements ViewBinding {
       }
 
       id = R.id.cardReminderTime;
-      MaterialCardView cardReminderTime = ViewBindings.findChildViewById(rootView, id);
+      FrameLayout cardReminderTime = ViewBindings.findChildViewById(rootView, id);
       if (cardReminderTime == null) {
         break missingId;
       }
 
-      id = R.id.colorBlue;
-      View colorBlue = ViewBindings.findChildViewById(rootView, id);
-      if (colorBlue == null) {
-        break missingId;
-      }
-
-      id = R.id.colorGreen;
-      View colorGreen = ViewBindings.findChildViewById(rootView, id);
-      if (colorGreen == null) {
-        break missingId;
-      }
-
-      id = R.id.colorOrange;
-      View colorOrange = ViewBindings.findChildViewById(rootView, id);
-      if (colorOrange == null) {
-        break missingId;
-      }
-
-      id = R.id.colorPurple;
-      View colorPurple = ViewBindings.findChildViewById(rootView, id);
-      if (colorPurple == null) {
-        break missingId;
-      }
-
-      id = R.id.colorRed;
-      View colorRed = ViewBindings.findChildViewById(rootView, id);
-      if (colorRed == null) {
+      id = R.id.etCommitGoal;
+      TextInputEditText etCommitGoal = ViewBindings.findChildViewById(rootView, id);
+      if (etCommitGoal == null) {
         break missingId;
       }
 
@@ -232,6 +206,12 @@ public final class ActivitySettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tilCommitGoal;
+      TextInputLayout tilCommitGoal = ViewBindings.findChildViewById(rootView, id);
+      if (tilCommitGoal == null) {
+        break missingId;
+      }
+
       id = R.id.tilToken;
       TextInputLayout tilToken = ViewBindings.findChildViewById(rootView, id);
       if (tilToken == null) {
@@ -257,9 +237,9 @@ public final class ActivitySettingsBinding implements ViewBinding {
       }
 
       return new ActivitySettingsBinding((CoordinatorLayout) rootView, btnBatteryOptimization,
-          btnHelpToken, btnSaveCredentials, btnToggleToken, cardReminderTime, colorBlue, colorGreen,
-          colorOrange, colorPurple, colorRed, etToken, etUsername, switchDarkMode,
-          switchNotifications, switchWidget, tilToken, tilUsername, toolbar, tvReminderTime);
+          btnHelpToken, btnSaveCredentials, btnSaveGoal, btnToggleToken, cardReminderTime,
+          etCommitGoal, etToken, etUsername, switchDarkMode, switchNotifications, switchWidget,
+          tilCommitGoal, tilToken, tilUsername, toolbar, tvReminderTime);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

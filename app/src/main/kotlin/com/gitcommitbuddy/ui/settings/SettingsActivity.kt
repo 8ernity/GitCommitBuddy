@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.gitcommitbuddy.R
+import com.gitcommitbuddy.data.PreferencesManager
 import com.gitcommitbuddy.databinding.ActivitySettingsBinding
 import com.gitcommitbuddy.service.FloatingWidgetService
 import com.gitcommitbuddy.service.ReminderWorker
@@ -143,12 +144,13 @@ class SettingsActivity : AppCompatActivity() {
             applyDarkMode(checked)
         }
 
-        // ── Bubble colour swatches ────────────────────────────────────────────
-        binding.colorGreen.setOnClickListener  { selectColor("#1F8348") }
-        binding.colorBlue.setOnClickListener   { selectColor("#1565C0") }
-        binding.colorPurple.setOnClickListener { selectColor("#6A1B9A") }
-        binding.colorRed.setOnClickListener    { selectColor("#C62828") }
-        binding.colorOrange.setOnClickListener { selectColor("#E65100") }
+        // ── Daily commit limit ─────────────────────────────────────────────────
+        binding.btnSaveGoal.setOnClickListener {
+            val limitStr = binding.etCommitGoal.text?.toString() ?: ""
+            val limit = limitStr.toIntOrNull() ?: PreferencesManager.Defaults.COMMIT_LIMIT
+            viewModel.setCommitLimit(limit)
+            showSnackbar("Daily commit limit updated to $limit ✅")
+        }
 
         // ── Battery optimisation ──────────────────────────────────────────────
         binding.btnBatteryOptimization.setOnClickListener {
@@ -210,6 +212,15 @@ class SettingsActivity : AppCompatActivity() {
                 programmaticDarkMode = true
                 binding.switchDarkMode.isChecked = it 
                 programmaticDarkMode = false
+            }
+        }
+        lifecycleScope.launch {
+            var firstLimit = true
+            viewModel.commitLimit.collectLatest { limit ->
+                if (firstLimit) {
+                    binding.etCommitGoal.setText(limit.toString())
+                    firstLimit = false
+                }
             }
         }
     }
@@ -289,11 +300,6 @@ class SettingsActivity : AppCompatActivity() {
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private fun selectColor(hex: String) {
-        viewModel.setBubbleColor(hex)
-        showSnackbar("Bubble colour updated — restart widget to apply")
-    }
-
     private fun applyDarkMode(enabled: Boolean) {
         androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(
             if (enabled) androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
@@ -325,10 +331,23 @@ class SettingsActivity : AppCompatActivity() {
             .show()
     }
 
+    override fun onCreateOptionsMenu(menu: android.view.Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_settings, menu)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            onBackPressedDispatcher.onBackPressed()
-            return true
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                return true
+            }
+            R.id.action_refresh -> {
+                // Manually trigger a refresh if the user wants to re-check status immediately
+                sendBroadcast(Intent(FloatingWidgetService.ACTION_REFRESH))
+                showSnackbar("Syncing status…")
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

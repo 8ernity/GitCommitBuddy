@@ -74,7 +74,8 @@ public final class DailyCommitDao_Impl implements DailyCommitDao {
   }
 
   @Override
-  public Object upsert(final DailyCommitEntity entity, final Continuation<? super Unit> arg1) {
+  public Object upsert(final DailyCommitEntity entity,
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -88,11 +89,12 @@ public final class DailyCommitDao_Impl implements DailyCommitDao {
           __db.endTransaction();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
-  public Object pruneOlderThan(final String cutoffDate, final Continuation<? super Unit> arg1) {
+  public Object pruneOlderThan(final String cutoffDate,
+      final Continuation<? super Unit> $completion) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -117,7 +119,7 @@ public final class DailyCommitDao_Impl implements DailyCommitDao {
           __preparedStmtOfPruneOlderThan.release(_stmt);
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @Override
@@ -172,7 +174,7 @@ public final class DailyCommitDao_Impl implements DailyCommitDao {
   }
 
   @Override
-  public Object getRecentDays(final Continuation<? super List<DailyCommitEntity>> arg0) {
+  public Object getRecentDays(final Continuation<? super List<DailyCommitEntity>> $completion) {
     final String _sql = "SELECT * FROM daily_commits ORDER BY dateKey DESC LIMIT 90";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -216,12 +218,12 @@ public final class DailyCommitDao_Impl implements DailyCommitDao {
           _statement.release();
         }
       }
-    }, arg0);
+    }, $completion);
   }
 
   @Override
   public Object getForDate(final String dateKey,
-      final Continuation<? super DailyCommitEntity> arg1) {
+      final Continuation<? super DailyCommitEntity> $completion) {
     final String _sql = "SELECT * FROM daily_commits WHERE dateKey = ?";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 1);
     int _argIndex = 1;
@@ -271,7 +273,7 @@ public final class DailyCommitDao_Impl implements DailyCommitDao {
           _statement.release();
         }
       }
-    }, arg1);
+    }, $completion);
   }
 
   @NonNull

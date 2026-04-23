@@ -48,7 +48,7 @@ object AppModule {
     @Provides @Singleton
     fun provideAuthInterceptor(prefsManager: PreferencesManager): Interceptor =
         Interceptor { chain ->
-            val token = runBlocking { prefsManager.githubToken.first() }
+            val token = runBlocking { prefsManager.githubToken.first() }.trim()
             val builder = chain.request().newBuilder()
                 .addHeader("Accept", "application/vnd.github+json")
                 .addHeader("X-GitHub-Api-Version", "2022-11-28")

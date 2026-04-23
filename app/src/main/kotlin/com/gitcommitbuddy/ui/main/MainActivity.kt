@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.gitcommitbuddy.R
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity() {
     // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -143,38 +145,40 @@ class MainActivity : AppCompatActivity() {
                         binding.layoutNotConfigured.isVisible = false
                         binding.layoutError.isVisible         = false
 
-                        val status = state.status
-                        val goal = 7
-                        val count = status.todayCommitCount
+                        lifecycleScope.launch {
+                            val status = state.status
+                            val limit = prefs.getSnapshot().commitLimit
+                            val count = status.todayCommitCount
 
-                        binding.tvCommitStatus.text = if (status.committedToday)
-                            "✅ Goal Reached! ($count/$goal)" else "❌ $count/$goal commits today"
+                            binding.tvCommitStatus.text = if (status.committedToday)
+                                "✅ Goal Reached! ($count/$limit)" else "❌ $count/$limit commits today"
 
-                        binding.tvMotivation.text = if (status.committedToday)
-                            MotivationalMessages.getCommittedMessage()
-                        else MotivationalMessages.getPendingMessage()
+                            binding.tvMotivation.text = if (status.committedToday)
+                                MotivationalMessages.getCommittedMessage()
+                            else MotivationalMessages.getPendingMessage()
 
-                        binding.tvLastCommit.text = status.lastCommitTime
-                            ?.let { TimeFormatter.formatRelative(it) }
-                            ?: "No recent commits"
+                            binding.tvLastCommit.text = status.lastCommitTime
+                                ?.let { TimeFormatter.formatRelative(it) }
+                                ?: "No recent commits"
 
-                        binding.tvLastRepo.text    = status.lastCommitRepo ?: ""
-                        binding.tvLastMessage.text = status.lastCommitMessage ?: ""
-                        binding.tvStreak.text      =
-                            MotivationalMessages.getStreakDescription(status.currentStreak)
+                            binding.tvLastRepo.text    = status.lastCommitRepo ?: ""
+                            binding.tvLastMessage.text = status.lastCommitMessage ?: ""
+                            binding.tvStreak.text      =
+                                MotivationalMessages.getStreakDescription(status.currentStreak)
 
-                        MotivationalMessages.getStreakMilestoneMessage(status.currentStreak)
-                            ?.let { showSnackbar(it) }
+                            MotivationalMessages.getStreakMilestoneMessage(status.currentStreak)
+                                ?.let { showSnackbar(it) }
 
-                        binding.ivStatusIcon.apply {
-                            setImageResource(
-                                if (status.committedToday) R.drawable.ic_check_circle
-                                else R.drawable.ic_warning
-                            )
-                            animate().scaleX(1.2f).scaleY(1.2f).setDuration(150)
-                                .withEndAction {
-                                    animate().scaleX(1f).scaleY(1f).setDuration(150).start()
-                                }.start()
+                            binding.ivStatusIcon.apply {
+                                setImageResource(
+                                    if (status.committedToday) R.drawable.ic_check_circle
+                                    else R.drawable.ic_warning
+                                )
+                                animate().scaleX(1.2f).scaleY(1.2f).setDuration(150)
+                                    .withEndAction {
+                                        animate().scaleX(1f).scaleY(1f).setDuration(150).start()
+                                    }.start()
+                            }
                         }
                     }
                     is CommitUiState.Error -> {

@@ -9,7 +9,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="280dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_glass_panel">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_github"
-                app:tint="?attr/colorPrimary" />
+                app:tint="@color/white" />
 
             <TextView
                 android:layout_width="0dp"
@@ -134,6 +135,8 @@
             android:text="Open GitHub"
             android:textSize="14sp"
             app:icon="@drawable/ic_github"
+            app:iconTint="@android:color/transparent"
+            app:iconTintMode="src_atop"
             app:iconGravity="start" />
 
         <!-- ── Secondary action row ───────────────────────────────────────── -->

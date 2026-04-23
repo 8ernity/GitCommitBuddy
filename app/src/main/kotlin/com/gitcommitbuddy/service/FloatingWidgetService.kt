@@ -13,6 +13,7 @@ import android.os.VibratorManager
 import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.view.ContextThemeWrapper
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -56,7 +57,6 @@ class FloatingWidgetService : Service() {
     private var bubbleParams: WindowManager.LayoutParams? = null
     private var panelParams: WindowManager.LayoutParams? = null
     private var isPanelVisible = false
-    private var lastBubbleColorHex: String = PreferencesManager.Defaults.BUBBLE_COLOR
 
     companion object {
         const val ACTION_REFRESH      = "com.gitcommitbuddy.action.REFRESH"
@@ -85,12 +85,6 @@ class FloatingWidgetService : Service() {
 
     private fun observeSettings() {
         serviceScope.launch {
-            prefs.bubbleColor.collect { hex ->
-                lastBubbleColorHex = hex
-                applyBubbleColor(hex)
-            }
-        }
-        serviceScope.launch {
             prefs.darkMode.collect { isDark ->
                 updateTheme(isDark)
             }
@@ -110,19 +104,6 @@ class FloatingWidgetService : Service() {
             if (wasPanelVisible) showPanel()
             refreshCommitStatus()
         }
-    }
-
-    private fun applyBubbleColor(hex: String) {
-        if (!::bubbleBinding.isInitialized) return
-        try {
-            val color = Color.parseColor(hex)
-            val drawable = bubbleBinding.bubbleBackground.background?.mutate()
-            if (drawable is android.graphics.drawable.GradientDrawable) {
-                drawable.setColor(color)
-            } else {
-                drawable?.setTint(color)
-            }
-        } catch (_: Exception) { }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -148,7 +129,6 @@ class FloatingWidgetService : Service() {
     private fun addBubble() {
         val contextThemeWrapper = ContextThemeWrapper(this, R.style.Theme_GitCommitBuddy)
         bubbleBinding = LayoutFloatingBubbleBinding.inflate(LayoutInflater.from(contextThemeWrapper))
-        applyBubbleColor(lastBubbleColorHex)
         bubbleView    = bubbleBinding.root
 
         val layoutType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -163,12 +143,16 @@ class FloatingWidgetService : Service() {
             WindowManager.LayoutParams.WRAP_CONTENT,
             layoutType,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
+                WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
             PixelFormat.TRANSLUCENT
         ).apply {
             gravity = Gravity.TOP or Gravity.START
             x = 24
             y = 300
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                blurBehindRadius = 40
+            }
         }
 
         try {
@@ -190,6 +174,27 @@ class FloatingWidgetService : Service() {
                 .scaleX(1f).scaleY(1f).alpha(1f)
                 .setDuration(320)
                 .setInterpolator(OvershootInterpolator(2.2f))
+                .withEndAction { startBreathingAnimation() }
+                .start()
+        }
+    }
+
+    private fun startBreathingAnimation() {
+        bubbleView?.let { view ->
+            view.animate()
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .setDuration(2000)
+                .setInterpolator(AccelerateDecelerateInterpolator())
+                .withEndAction {
+                    view.animate()
+                        .scaleX(0.95f)
+                        .scaleY(0.95f)
+                        .setDuration(2000)
+                        .setInterpolator(AccelerateDecelerateInterpolator())
+                        .withEndAction { startBreathingAnimation() }
+                        .start()
+                }
                 .start()
         }
     }
@@ -285,10 +290,14 @@ class FloatingWidgetService : Service() {
             WindowManager.LayoutParams.WRAP_CONTENT,
             layoutType,
             WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
-                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH or
+                WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
             PixelFormat.TRANSLUCENT
         ).apply {
             gravity = Gravity.CENTER
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                blurBehindRadius = 60
+            }
         }
 
         try {
@@ -375,11 +384,11 @@ class FloatingWidgetService : Service() {
                 showNotConfigured()
                 return@launch
             }
-            repository.refreshCommitStatus(snapshot.username, snapshot.token)
+            repository.refreshCommitStatus(snapshot.username, snapshot.token, snapshot.commitLimit)
             val cache = repository.observeCommitStatus().first()
             if (cache != null) {
                 updateBubble(cache.committedToday)
-                updatePanel(cache)
+                updatePanel(cache, snapshot.commitLimit)
             }
             panelBinding.progressBar.isVisible = false
         }
@@ -397,13 +406,12 @@ class FloatingWidgetService : Service() {
             }.start()
     }
 
-    private fun updatePanel(cache: CommitCacheEntity) {
-        val goal = 7
+    private fun updatePanel(cache: CommitCacheEntity, limit: Int) {
         val count = cache.todayCommitCount
         
         panelBinding.tvCommitStatus.text =
-            if (cache.committedToday) "✅ Goal Reached! ($count/$goal)" 
-            else "❌ $count/$goal commits today"
+            if (cache.committedToday) "✅ Goal Reached! ($count/$limit)" 
+            else "❌ $count/$limit commits today"
 
         panelBinding.tvLastCommitTime.text = cache.lastCommitTime
             ?.let { "Last: ${TimeFormatter.formatRelative(it)}" }
