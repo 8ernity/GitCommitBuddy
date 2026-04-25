@@ -49,60 +49,36 @@ Perfect for developers preparing for placements or building habits.
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-## 🏛️ System Architecture
+## 🏛️ Sequence Diagram
 
 ```mermaid
-graph TD
+sequenceDiagram
 
-    %% Frontend
-    subgraph Frontend [User Interface - Next.js]
-        UI[Dashboard Chat UI]
-        INPUT[User Input - Repo URL, Query, Audio]
-    end
+    participant U as User
+    participant F as Frontend
+    participant B as Backend
+    participant AI as AI Engine
+    participant DB as Database
+    participant VDB as Vector DB
 
-    %% Backend
-    subgraph Backend [Application Core]
-        API[API Routes - tRPC]
-        AUTH[Authentication - NextAuth]
-        LOGIC[Business Logic]
-    end
+    U->>F: Enter input (repo / query / audio)
+    F->>B: Send request
 
-    %% AI Engine
-    subgraph AI_Engine [AI Processing Layer]
-        LLM[LLM Chatbot Engine]
-        RAG[RAG System]
-        EMB[Embeddings Model]
-        AUDIO[Audio Transcription]
-    end
+    B->>DB: Store request data
 
-    %% Database
-    subgraph Storage [Database Layer]
-        DB[(PostgreSQL)]
-        VECTOR[(Vector Database)]
-    end
+    B->>AI: Send for processing
+    AI->>VDB: Retrieve context
+    VDB-->>AI: Return embeddings
 
-    %% Flow
-    UI --> INPUT
-    INPUT --> API
-    API --> AUTH
-    API --> LOGIC
+    AI-->>B: Generated response
 
-    LOGIC -->|Repo Analysis| RAG
-    LOGIC -->|Chat Query| LLM
-    LOGIC -->|Audio Processing| AUDIO
+    B->>DB: Save result
+    B-->>F: Send response
 
-    RAG --> EMB
-    EMB --> VECTOR
-
-    LOGIC --> DB
-    VECTOR --> RAG
-
-    LLM --> LOGIC
-    AUDIO --> LOGIC
-
-    LOGIC --> API
-    API --> UI
+    F-->>U: Display output
 ```
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
 ## 🏗️ Project Structure
 
