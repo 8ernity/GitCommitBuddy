@@ -49,6 +49,59 @@ Perfect for developers preparing for placements or building habits.
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
+```mermaid
+graph TD
+
+    %% Frontend
+    subgraph Frontend [User Interface - Next.js]
+        UI[Dashboard Chat UI]
+        INPUT[User Input - Repo URL, Query, Audio]
+    end
+
+    %% Backend
+    subgraph Backend [Application Core]
+        API[API Routes - tRPC]
+        AUTH[Authentication - NextAuth]
+        LOGIC[Business Logic]
+    end
+
+    %% AI Engine
+    subgraph AI_Engine [AI Processing Layer]
+        LLM[LLM Chatbot Engine]
+        RAG[RAG System]
+        EMB[Embeddings Model]
+        AUDIO[Audio Transcription]
+    end
+
+    %% Database
+    subgraph Storage [Database Layer]
+        DB[(PostgreSQL)]
+        VECTOR[(Vector Database)]
+    end
+
+    %% Flow
+    UI --> INPUT
+    INPUT --> API
+    API --> AUTH
+    API --> LOGIC
+
+    LOGIC -->|Repo Analysis| RAG
+    LOGIC -->|Chat Query| LLM
+    LOGIC -->|Audio Processing| AUDIO
+
+    RAG --> EMB
+    EMB --> VECTOR
+
+    LOGIC --> DB
+    VECTOR --> RAG
+
+    LLM --> LOGIC
+    AUDIO --> LOGIC
+
+    LOGIC --> API
+    API --> UI
+```
+
 ## 🏗️ Project Structure
 
 ```
