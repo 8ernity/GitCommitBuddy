@@ -728,7 +728,7 @@ public final class DaggerGitCommitBuddyApp_HiltComponents_SingletonC {
           };
 
           case 1: // com.gitcommitbuddy.data.repository.GitHubRepository 
-          return (T) new GitHubRepository(singletonCImpl.provideGitHubApiServiceProvider.get(), singletonCImpl.commitCacheDao(), singletonCImpl.dailyCommitDao());
+          return (T) new GitHubRepository(singletonCImpl.provideGitHubApiServiceProvider.get(), singletonCImpl.commitCacheDao(), singletonCImpl.dailyCommitDao(), singletonCImpl.preferencesManagerProvider.get());
 
           case 2: // com.gitcommitbuddy.data.api.GitHubApiService 
           return (T) AppModule_ProvideGitHubApiServiceFactory.provideGitHubApiService(singletonCImpl.provideRetrofitProvider.get());

@@ -76,9 +76,10 @@ data class Payload(
 )
 
 data class CommitRef(
-    @SerializedName("sha")     val sha: String,
-    @SerializedName("message") val message: String,
-    @SerializedName("author")  val author: CommitAuthor
+    @SerializedName("sha")      val sha: String,
+    @SerializedName("message")  val message: String,
+    @SerializedName("author")   val author: CommitAuthor,
+    @SerializedName("distinct") val distinct: Boolean = true
 )
 
 data class CommitAuthor(

@@ -1,5 +1,6 @@
 package com.gitcommitbuddy.data.repository
 
+import com.gitcommitbuddy.data.PreferencesManager
 import com.gitcommitbuddy.data.api.*
 import com.gitcommitbuddy.data.db.*
 import kotlinx.coroutines.Dispatchers
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 class GitHubRepository @Inject constructor(
     private val api: GitHubApiService,
     private val cacheDao: CommitCacheDao,
-    private val dailyDao: DailyCommitDao
+    private val dailyDao: DailyCommitDao,
+    private val prefs: PreferencesManager
 ) {
 
     fun observeCommitStatus(): Flow<CommitCacheEntity?> = cacheDao.observeCache()
@@ -28,37 +30,71 @@ class GitHubRepository @Inject constructor(
         token: String,
         commitLimit: Int = 1
     ): ApiResult<CommitStatus> = withContext(Dispatchers.IO) {
-        if (username.isBlank()) {
+        var resolvedUsername = username.trim()
+        if (resolvedUsername.isBlank()) {
             return@withContext ApiResult.Error("GitHub username not configured.")
         }
+
         try {
-            val todayDate = LocalDate.now(ZoneId.systemDefault()).toString()
-            
-            // 1. Fetch Today's Count via Search API (Source of Truth for Today)
-            val searchResponse = api.searchCommits("author:$username author-date:$todayDate")
-            val todayCommitCount = if (searchResponse.isSuccessful) {
-                searchResponse.body()?.totalCount ?: 0
-            } else {
-                0
+            // 1. Resolve real username from token if possible
+            if (token.isNotBlank()) {
+                val userResponse = api.getAuthenticatedUser()
+                if (userResponse.isSuccessful) {
+                    val login = userResponse.body()?.login
+                    if (!login.isNullOrBlank() && login != resolvedUsername) {
+                        resolvedUsername = login
+                        prefs.saveGitHubCredentials(resolvedUsername, token)
+                    }
+                }
             }
 
-            // 2. Fetch History for Streak via Search API (Last 30 Days)
-            // This ensures we get the 24-day streak even if events are filtered or missing.
-            val thirtyDaysAgo = LocalDate.now(ZoneId.systemDefault()).minusDays(35).toString()
-            val historyResponse = api.searchCommits("author:$username author-date:>$thirtyDaysAgo", perPage = 100)
+            val todayDate = LocalDate.now(ZoneId.systemDefault()).toString()
+            val yesterdayDate = LocalDate.now(ZoneId.systemDefault()).minusDays(1).toString()
+            
+            // 2. Fetch commits from Search API (Covers Yesterday + Today to handle timezones)
+            val searchResponse = api.searchCommits("author:$resolvedUsername author-date:>=$yesterdayDate", perPage = 100)
+            val searchItems = searchResponse.body()?.items ?: emptyList()
+            
+            // 3. Fetch Events for real-time metadata
+            val eventsResponse = api.getUserEvents(resolvedUsername, perPage = 50)
+            val allEvents = eventsResponse.body() ?: emptyList()
+            val pushEvents = allEvents.filter { it.type.equals("PushEvent", ignoreCase = true) }
+
+            // 4. Robust Counting: Use unique SHAs to avoid double-counting
+            val uniqueCommitShas = mutableSetOf<String>()
+            
+            // Add from Search API (The most accurate source for unique SHAs)
+            searchItems.forEach { item ->
+                if (isToday(item.commit.author.date)) {
+                    uniqueCommitShas.add(item.sha)
+                }
+            }
+            
+            // Add from Events API (Catches real-time pushes for public & private)
+            pushEvents.filter { isToday(it.createdAt) }.forEach { event ->
+                event.payload?.commits?.forEach { commitRef ->
+                    // Only count "distinct" commits to avoid merge-commit inflation
+                    if (commitRef.distinct) {
+                        uniqueCommitShas.add(commitRef.sha)
+                    }
+                }
+            }
+
+            val todayCommitCount = uniqueCommitShas.size
+            
+            // 5. Fetch History for Streak (Last 45 Days)
+            val historyAgo = LocalDate.now(ZoneId.systemDefault()).minusDays(45).toString()
+            val historyResponse = api.searchCommits("author:$resolvedUsername author-date:>$historyAgo", perPage = 100)
             val allHistoryCommits = historyResponse.body()?.items ?: emptyList()
 
-            // 3. Fetch Events for real-time repo metadata
-            val eventsResponse = api.getUserEvents(username, perPage = 10)
-            val pushEvents = (eventsResponse.body() ?: emptyList()).filter { it.type.equals("PushEvent", ignoreCase = true) }
             val mostRecent = pushEvents.firstOrNull()
 
             val status = CommitStatus(
                 committedToday    = todayCommitCount >= commitLimit,
                 todayCommitCount  = todayCommitCount,
-                lastCommitTime    = mostRecent?.createdAt ?: allHistoryCommits.firstOrNull()?.commit?.author?.date,
-                lastCommitRepo    = mostRecent?.repo?.name ?: allHistoryCommits.firstOrNull()?.repository?.name,
-                lastCommitMessage = mostRecent?.payload?.commits?.firstOrNull()?.message ?: allHistoryCommits.firstOrNull()?.commit?.message,
+                lastCommitTime    = mostRecent?.createdAt ?: searchItems.firstOrNull()?.commit?.author?.date,
+                lastCommitRepo    = mostRecent?.repo?.name ?: searchItems.firstOrNull()?.repository?.name,
+                lastCommitMessage = mostRecent?.payload?.commits?.firstOrNull()?.message ?: searchItems.firstOrNull()?.commit?.message,
                 currentStreak     = calculateStreakFromSearch(allHistoryCommits, todayCommitCount)
             )
 

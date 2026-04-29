@@ -1,5 +1,6 @@
 package com.gitcommitbuddy.data.repository;
 
+import com.gitcommitbuddy.data.PreferencesManager;
 import com.gitcommitbuddy.data.api.GitHubApiService;
 import com.gitcommitbuddy.data.db.CommitCacheDao;
 import com.gitcommitbuddy.data.db.DailyCommitDao;
@@ -30,25 +31,30 @@ public final class GitHubRepository_Factory implements Factory<GitHubRepository>
 
   private final Provider<DailyCommitDao> dailyDaoProvider;
 
+  private final Provider<PreferencesManager> prefsProvider;
+
   public GitHubRepository_Factory(Provider<GitHubApiService> apiProvider,
-      Provider<CommitCacheDao> cacheDaoProvider, Provider<DailyCommitDao> dailyDaoProvider) {
+      Provider<CommitCacheDao> cacheDaoProvider, Provider<DailyCommitDao> dailyDaoProvider,
+      Provider<PreferencesManager> prefsProvider) {
     this.apiProvider = apiProvider;
     this.cacheDaoProvider = cacheDaoProvider;
     this.dailyDaoProvider = dailyDaoProvider;
+    this.prefsProvider = prefsProvider;
   }
 
   @Override
   public GitHubRepository get() {
-    return newInstance(apiProvider.get(), cacheDaoProvider.get(), dailyDaoProvider.get());
+    return newInstance(apiProvider.get(), cacheDaoProvider.get(), dailyDaoProvider.get(), prefsProvider.get());
   }
 
   public static GitHubRepository_Factory create(Provider<GitHubApiService> apiProvider,
-      Provider<CommitCacheDao> cacheDaoProvider, Provider<DailyCommitDao> dailyDaoProvider) {
-    return new GitHubRepository_Factory(apiProvider, cacheDaoProvider, dailyDaoProvider);
+      Provider<CommitCacheDao> cacheDaoProvider, Provider<DailyCommitDao> dailyDaoProvider,
+      Provider<PreferencesManager> prefsProvider) {
+    return new GitHubRepository_Factory(apiProvider, cacheDaoProvider, dailyDaoProvider, prefsProvider);
   }
 
   public static GitHubRepository newInstance(GitHubApiService api, CommitCacheDao cacheDao,
-      DailyCommitDao dailyDao) {
-    return new GitHubRepository(api, cacheDao, dailyDao);
+      DailyCommitDao dailyDao, PreferencesManager prefs) {
+    return new GitHubRepository(api, cacheDao, dailyDao, prefs);
   }
 }
