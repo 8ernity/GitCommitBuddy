@@ -1,4 +1,7 @@
-# GitCommit Buddy 🔥
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥" width="28" style="vertical-align:-4px;">
+  GitCommit Buddy
+</h2>
 
 A production-ready Android app that displays a **draggable floating bubble** (chat-head style) reminding you to commit to GitHub every day.
 
@@ -328,7 +331,10 @@ com.github.bumptech.glide:glide:4.16.0
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-## 🚀 Building a Release APK
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.gif" alt="🚀" width="28" style="vertical-align:-4px;">
+  Building a Release APK
+</h2>
 
 1. Generate a keystore:
 ```bash
