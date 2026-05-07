@@ -22,7 +22,10 @@ A production-ready Android app that displays a **draggable floating bubble** (ch
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-## 💡 Why GitCommitBuddy?
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4a1/512.gif" width="28" style="vertical-align:-4px;">
+  Why GitCommitBuddy?
+</h2>
 
 Maintaining a daily GitHub streak is hard.
 
@@ -286,7 +289,10 @@ val prEvents = events.filter { it.type == "PullRequestEvent" }
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-## 🐛 Common Issues
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f41b/512.gif" width="28" style="vertical-align:-4px;">
+  Common Issues
+</h2>
 
 | Problem | Solution |
 |---|---|
