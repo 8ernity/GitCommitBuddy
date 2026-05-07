@@ -1,7 +1,7 @@
-<h2 style="margin:0;">
-  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥" width="28" style="vertical-align:-4px;">
-  GitCommit Buddy
-</h2>
+<h1 style="margin:0;">
+   GitCommit Buddy
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥" width="38" style="vertical-align:-4px;">
+</h1>
 
 A production-ready Android app that displays a **draggable floating bubble** (chat-head style) reminding you to commit to GitHub every day.
 
@@ -306,7 +306,10 @@ val prEvents = events.filter { it.type == "PullRequestEvent" }
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%">
 
-## 📦 Key Dependencies
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4e6/512.gif" width="28" style="vertical-align:-4px;">
+  Key Dependencies
+</h2>
 
 ```gradle
 // UI
