@@ -5,7 +5,10 @@
 
 A production-ready Android app that displays a **draggable floating bubble** (chat-head style) reminding you to commit to GitHub every day.
 
-## 🎬 Demo
+<h2 style="margin:0;">
+  <img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f3ac/512.gif" width="28" style="vertical-align:-4px;">
+  Demo
+</h2>
 
 | Main Interface | Floating Bubble | Settings |
 |----------------|----------------|----------|
